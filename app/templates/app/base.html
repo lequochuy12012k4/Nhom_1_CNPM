@@ -1,0 +1,70 @@
+{% load static %}
+{% load socialaccount %}
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English4All</title>
+    <link rel="stylesheet" href="{% static 'app\css\base.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="{%url 'home' %}">English4All</a>
+            </div>
+            <ul>
+                <li class="trang_chu">
+                    <a href="">Về chúng tôi</a>
+                    <ul class="sub-menu">
+                        <li><a href="/ve_chung_toi/He_thong_co_so">Hệ thống cơ sở</a></li>
+                        <li><a href="/ve_chung_toi/Tin_tuc">Tin tức</a></li>
+                        <li><a href="/ve_chung_toi/Tuyen_dung">Tuyển dụng</a></li>
+                    </ul>
+                </li>
+                <li><a href="{%url 'lich_khai_giang' %}" class="lich_khai_giang">Lịch khai giảng</a></li>
+                <li class="khoa_hoc">
+                    <a href="">Khóa học</a>
+                    <ul class="sub-menu">
+                        <li><a href="/khoa_hoc/TOEIC">TOEIC</a></li>
+                        <li><a href="/khoa_hoc/IELTS">IELTS</a></li>
+                        <li><a href="/khoa_hoc/APTIS">APTIS</a></li>
+                    </ul>
+                </li>
+                <li><a href="{%url 'giao_vien' %}" class="giao_vien_header">Giáo viên</a></li>
+                <li><a href="#contact" class="lien_he">Liên hệ</a></li>
+            </ul>
+            <a href="{%url 'test_online' %}" class="test_online">TEST ONLINE</a>
+            <div class="auth" style="visibility: {{user_not_login}}">
+                <a href="{%url 'login' %}" id="loginBtn" class="login">Đăng nhập</a>
+                <a href="{%url 'register' %}" id="registerBtn" class="register">Đăng ký</a>
+            </div>
+            <div style="visibility: {{user_login}}">
+                <ul>
+                    <li class="user">
+                        <a href="">{{request.user}}</a>
+                        <ul class="sub-menu">
+                            <li><a href="{%url 'thong_tin' %}">Thông tin</a></li>
+                            <li><a href="{%url 'thanh_toan' %}">Thanh toán</a></li>
+                            <li><a href="{%url 'tien_trinh' %}">Tiến trình</a></li>
+                            <li><a href="{%url 'logout' %}">Đăng xuất</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <body>
+        {% block content %}
+        {% endblock content %}
+    </body>
+    <footer>
+        <p>© 2023 English4All. All rights reserved.</p>
+    </footer>
+</body>
