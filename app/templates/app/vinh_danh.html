@@ -1,0 +1,109 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block content %}
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <style>
+        .ranking-table {
+            width: 80%; /* Adjust as needed */
+            max-width: 600px; /* Optional: Limit maximum width */
+            margin: 20px auto; /* Center the table horizontally */
+            border-collapse: collapse;
+            animation: fadeIn 1.5s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .ranking-table thead {
+            background-color: #f39c12; /* Orange color from the image */
+            color: white;
+        }
+
+        .ranking-table th, .ranking-table td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .ranking-table th {
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .ranking-table tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .ranking-table tbody tr:hover {
+            background-color: #f0f0f0;
+        }
+
+        .ranking-table td {
+            font-size: 14px;
+        }
+
+        /* Animation Keyframes */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Responsive Adjustment */
+        @media (max-width: 768px) {
+            .ranking-table {
+                width: 95%; /* Take up more width on smaller screens */
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <section class="hero animate__animated">
+        <div class="hero-content">
+            <h1>Vinh danh</h1>
+            <p>Học tiếng Anh trực tuyến với các khóa học chất lượng cao, bài giảng thú vị và đội ngũ giáo viên tận tâm.</p>
+        </div>
+        <div class="hero-image">
+            <img src="{% static 'app/img/z.jpg' %}" alt="Người học tiếng Anh">
+        </div>
+    </section>
+
+    <section id="courses" class="courses animate__animated">
+        <h2>Bảng xếp hạng</h2>
+
+        <table class="ranking-table">
+            <thead>
+                <tr>
+                    <th>Xếp hạng</th>
+                    <th>Tên</th>
+                    <th>Điểm</th>
+                </tr>
+            </thead>
+            <tbody>
+              {% for ranking in rankings %}
+                <tr>
+                    <td>{{ ranking.rank }}</td>
+                    <td>{{ ranking.username }}</td>
+                    <td>{{ ranking.score}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+    <script src="{% static 'app/js/home.js' %}"></script>
+     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.animate__animated').each(function() {
+                $(this).waypoint(function() {
+                    $(this.element).addClass('animate__fadeIn');
+                }, {
+                    offset: '75%' // Adjust offset to trigger earlier or later
+                });
+            });
+        });
+    </script>
+</body>
+{% endblock content %}

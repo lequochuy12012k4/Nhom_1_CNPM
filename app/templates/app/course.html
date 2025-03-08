@@ -1,0 +1,201 @@
+{% extends 'app/base.html' %}
+{% load static %}
+<title>Khóa học</title>
+{% block content %}
+<body>
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Khóa học</h1>
+            <p>Học tiếng Anh trực tuyến với các khóa học chất lượng cao, bài giảng thú vị và đội ngũ giáo viên tận tâm.
+            </p>
+        </div>
+        <div class="hero-image">
+            <img src="z.jpg" alt="Người học tiếng Anh">
+        </div>
+    </section>
+
+    <!-- Courses Section -->
+    <section id="courses" class="courses">
+        <h2>TOEIC</h2>
+        <div class="course-list">
+            <!-- Các khóa học sẽ được thêm vào đây (ví dụ) -->
+            <div class="course-item" id="course-a1"> <!-- Thêm ID cho khóa học -->
+                <img src="img/course1.jpg" alt="Khóa học A1">
+                <h3>Khóa học A1 - Dành cho người mới bắt đầu</h3>
+                <p>Khóa học cơ bản giúp bạn làm quen với tiếng Anh và xây dựng nền tảng vững chắc.</p>
+                <button class="btn view-course-details" data-course-id="a1">Xem chi tiết</button>
+                <!-- Thay 'a1' bằng ID khóa học thực tế -->
+            </div>
+
+            <div class="course-item" id="course-b1"> <!-- Thêm ID cho khóa học -->
+                <img src="img/course2.jpg" alt="Khóa học B1">
+                <h3>Khóa học B1 - Tiếng Anh giao tiếp</h3>
+                <p>Nâng cao khả năng giao tiếp tiếng Anh trong các tình huống hàng ngày.</p>
+                <button class="btn view-course-details" data-course-id="b1">Xem chi tiết</button>
+                <!-- Thay 'b1' bằng ID khóa học thực tế -->
+            </div>
+
+            <!-- Thêm các khóa học khác vào đây -->
+        </div>
+    </section>
+
+    <section id="courses" class="courses">
+        <h2>IELTS</h2>
+        <div class="giao_vien-list">
+            <!-- Các khóa học sẽ được thêm vào đây (ví dụ) -->
+            <div class="giao_vien-item" id="giao_vien-a1"> <!-- Thêm ID cho khóa học -->
+                <img src="img/course1.jpg" alt="Khóa học A1">
+                <h3>Khóa học A1 - Dành cho người mới bắt đầu</h3>
+                <p>Khóa học cơ bản giúp bạn làm quen với tiếng Anh và xây dựng nền tảng vững chắc.</p>
+                <!-- Thay 'a1' bằng ID khóa học thực tế -->
+            </div>
+
+            <div class="course-item" id="course-b1"> <!-- Thêm ID cho khóa học -->
+                <img src="img/course2.jpg" alt="Khóa học B1">
+                <h3>Khóa học B1 - Tiếng Anh giao tiếp</h3>
+                <p>Nâng cao khả năng giao tiếp tiếng Anh trong các tình huống hàng ngày.</p>
+                <!-- Thay 'b1' bằng ID khóa học thực tế -->
+            </div>
+
+            <!-- Thêm các khóa học khác vào đây -->
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials">
+        <h2>APTIS</h2>
+        <div class="testimonial-list">
+            <div class="testimonial-item">
+                <p>"Tôi đã cải thiện đáng kể khả năng tiếng Anh của mình nhờ các khóa học tại đây. Giáo viên rất nhiệt
+                    tình và bài giảng rất thú vị."</p>
+                <p>- Nguyễn Văn A</p>
+            </div>
+
+            <div class="testimonial-item">
+                <p>"Giao diện thân thiện, dễ sử dụng. Các bài tập tương tác giúp tôi học tiếng Anh hiệu quả hơn."</p>
+                <p>- Trần Thị B</p>
+            </div>
+
+            <!-- Thêm các lời chứng thực khác vào đây -->
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <h2>Thông tin đăng ký</h2>
+        <form>
+            <input type="text" placeholder="Họ và tên">
+            <input type="email" placeholder="Email của bạn">
+            <input type="text" placeholder="Số điện thoại">
+            <input type="text" placeholder="Truong hoc">
+            <input list="loai_chung_chi" placeholder="Loại chứng chỉ">
+            <datalist id="loai_chung_chi">
+                <option value="TOEIC"></option>
+                <option value="IELTS"></option>
+                <option value="APTIS"></option>
+            </datalist>
+            <input type="number" placeholder="Mục tiêu">
+            <button type="submit" class="btn">Đăng ký ngay</button>
+        </form>
+    </section>
+    <section id="contact" class="contact">
+        <h2 class="contact">Thông tin liên hệ </h2>
+        <style>
+            body {
+                background-color: rgb(255, 255, 255);
+                color: rgb(0, 0, 0);
+                font-family: sans-serif;
+            }
+            
+            .container {
+                display: flex;
+                justify-content: space-around;
+                padding: 20px;
+            }
+            
+            .section {
+                width: 30%;
+            }
+            
+            .address-item {
+                margin-bottom: 10px;
+            }
+            
+            .contact-item {
+                margin-bottom: 10px;
+            }
+            
+            .fanpage-item {
+                margin-bottom: 10px;
+            }
+            
+            .map-link {
+                display: block;
+                padding: 10px 20px;
+                border: 1px solid white;
+                text-align: center;
+                text-decoration: none;
+                color: white;
+                width: 100px;
+            }
+            </style>
+            </head>
+            <body>
+            
+            <div class="container">
+                <div class="section">
+                    <h2>TRUNG TÂM ANH NGỮ ZENLISH</h2>
+                    <div class="address-item">
+                        <strong>Cơ sở 1 – Kim Mã:</strong> Số 22A ngách 25, ngõ 629 Kim Mã, phường Ngọc Khánh, Ba Đình, Hà Nội
+                    </div>
+                    <div class="address-item">
+                        <strong>Cơ sở 2 – Hai Bà Trưng:</strong> Số 5, ngõ 128 phố Vọng, Hai Bà Trưng, Hà Nội
+                    </div>
+                    <div class="address-item">
+                        <strong>Cơ sở 3 – Hà Đông:</strong> Số 56, ngõ 54 Nguyễn Khuyến, Văn Quán, Hà Đông
+                    </div>
+                    <div class="address-item">
+                        <strong>Cơ sở 4 – Tây Sơn:</strong> Số 29 Tây Sơn, Đống Đa, Hà Nội
+                    </div>
+                    <div class="address-item">
+                        <strong>Cơ sở 5 – Nam Từ Liêm:</strong> 44 Nguyễn Hoàng, Nam Từ Liêm, Hà Nội
+                    </div>
+                </div>
+            
+                <div class="section">
+                    <h2>CÔNG TY TNHH TƯ VẤN GIÁO DỤC VÀ<br>XÚC TIẾN THƯƠNG MAI ZENLISH</h2>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i> 0377 602 075/ 0988 202 904
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i> infor@zenlish.edu.vn
+                    </div>
+                    
+                    <h3>THỜI GIAN LÀM VIỆC</h3>
+                    <p>Sáng: 08:00 - 12:00 (Thứ Hai – thứ Bảy)</p>
+                    <p>Chiều: 13:30 - 17:30 (Thứ Hai – Thứ Bảy)</p>
+                    <p>Tối: 18:00 – 21:45 (Thứ Hai – Thứ Bảy)</p>
+                </div>
+            
+                <div class="section">
+                    <h2>FANPAGE</h2>
+                    <div class="fanpage-item">
+                       <img src="" alt="photo.png">
+                    </div>
+                    <img src="" alt="photo2.png">
+                </div>
+                       
+    </section>
+
+    <!-- Course Details Modal -->
+    <div id="courseDetailsModal" class="modal">
+        <div class="modal-content">
+            <h2 id="courseDetailsTitle"></h2>
+            <div id="courseDetailsContent">
+                <!-- Nội dung chi tiết khóa học sẽ được thêm vào đây -->
+            </div>
+        </div>
+    </div>
+    <script src="{% static 'app\js\home.js' %}"></script>
+</body>
+{% endblock content %}
