@@ -2,6 +2,7 @@
 {% load static %}
 <title>Khóa học</title>
 {% block content %}
+
 <body>
     <section class="hero">
         <div class="hero-content">
@@ -19,6 +20,22 @@
         <h2>TOEIC</h2>
         <div class="course-list">
             <!-- Các khóa học sẽ được thêm vào đây (ví dụ) -->
+            <div class="course-item" id="course-a1"> <!-- Thêm ID cho khóa học -->
+                <img src="{% static 'app\images\icons\Google.png' %}" alt="Khóa học A1">
+                <h3>Khóa học A1 - Dành cho người mới bắt đầu</h3>
+                <p>Khóa học cơ bản giúp bạn làm quen với tiếng Anh và xây dựng nền tảng vững chắc.</p>
+                <button class="btn view-course-details" data-course-id="a1">Xem chi tiết</button>
+                <!-- Thay 'a1' bằng ID khóa học thực tế -->
+            </div>
+
+            <div class="course-item" id="course-a1"> <!-- Thêm ID cho khóa học -->
+                <img src="img/course1.jpg" alt="Khóa học A1">
+                <h3>Khóa học A1 - Dành cho người mới bắt đầu</h3>
+                <p>Khóa học cơ bản giúp bạn làm quen với tiếng Anh và xây dựng nền tảng vững chắc.</p>
+                <button class="btn view-course-details" data-course-id="a1">Xem chi tiết</button>
+                <!-- Thay 'a1' bằng ID khóa học thực tế -->
+            </div>
+
             <div class="course-item" id="course-a1"> <!-- Thêm ID cho khóa học -->
                 <img src="img/course1.jpg" alt="Khóa học A1">
                 <h3>Khóa học A1 - Dành cho người mới bắt đầu</h3>
@@ -50,6 +67,20 @@
                 <!-- Thay 'a1' bằng ID khóa học thực tế -->
             </div>
 
+            <div class="giao_vien-item" id="giao_vien-a1"> <!-- Thêm ID cho khóa học -->
+                <img src="img/course1.jpg" alt="Khóa học A1">
+                <h3>Khóa học A1 - Dành cho người mới bắt đầu</h3>
+                <p>Khóa học cơ bản giúp bạn làm quen với tiếng Anh và xây dựng nền tảng vững chắc.</p>
+                <!-- Thay 'a1' bằng ID khóa học thực tế -->
+            </div>
+
+            <div class="giao_vien-item" id="giao_vien-a1"> <!-- Thêm ID cho khóa học -->
+                <img src="img/course1.jpg" alt="Khóa học A1">
+                <h3>Khóa học A1 - Dành cho người mới bắt đầu</h3>
+                <p>Khóa học cơ bản giúp bạn làm quen với tiếng Anh và xây dựng nền tảng vững chắc.</p>
+                <!-- Thay 'a1' bằng ID khóa học thực tế -->
+            </div>
+
             <div class="course-item" id="course-b1"> <!-- Thêm ID cho khóa học -->
                 <img src="img/course2.jpg" alt="Khóa học B1">
                 <h3>Khóa học B1 - Tiếng Anh giao tiếp</h3>
@@ -63,12 +94,26 @@
 
     <!-- Testimonials Section -->
     <section id="testimonials" class="testimonials">
-        <h2>APTIS</h2>
+        <h2>THPTQG</h2>
         <div class="testimonial-list">
             <div class="testimonial-item">
                 <p>"Tôi đã cải thiện đáng kể khả năng tiếng Anh của mình nhờ các khóa học tại đây. Giáo viên rất nhiệt
                     tình và bài giảng rất thú vị."</p>
                 <p>- Nguyễn Văn A</p>
+            </div>
+
+            <div class="giao_vien-item" id="giao_vien-a1"> <!-- Thêm ID cho khóa học -->
+                <img src="img/course1.jpg" alt="Khóa học A1">
+                <h3>Khóa học A1 - Dành cho người mới bắt đầu</h3>
+                <p>Khóa học cơ bản giúp bạn làm quen với tiếng Anh và xây dựng nền tảng vững chắc.</p>
+                <!-- Thay 'a1' bằng ID khóa học thực tế -->
+            </div>
+
+            <div class="giao_vien-item" id="giao_vien-a1"> <!-- Thêm ID cho khóa học -->
+                <img src="img/course1.jpg" alt="Khóa học A1">
+                <h3>Khóa học A1 - Dành cho người mới bắt đầu</h3>
+                <p>Khóa học cơ bản giúp bạn làm quen với tiếng Anh và xây dựng nền tảng vững chắc.</p>
+                <!-- Thay 'a1' bằng ID khóa học thực tế -->
             </div>
 
             <div class="testimonial-item">
@@ -81,54 +126,332 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <h2>Thông tin đăng ký</h2>
-        <form>
-            <input type="text" placeholder="Họ và tên">
-            <input type="email" placeholder="Email của bạn">
-            <input type="text" placeholder="Số điện thoại">
-            <input type="text" placeholder="Truong hoc">
-            <input list="loai_chung_chi" placeholder="Loại chứng chỉ">
-            <datalist id="loai_chung_chi">
-                <option value="TOEIC"></option>
-                <option value="IELTS"></option>
-                <option value="APTIS"></option>
-            </datalist>
-            <input type="number" placeholder="Mục tiêu">
-            <button type="submit" class="btn">Đăng ký ngay</button>
-        </form>
+    <section class="university-logos">
+        <div class="container">
+            <h2>Zenlish tự hào khi là lựa chọn của +30.000 sinh viên<br>tại nhiều trường Đại học, Cao đẳng</h2>
+            <div class="logo-grid">
+                <img src="{% static 'app/images/university_logos/logo1.png' %}" alt="Logo 1">
+                <img src="{% static 'app/images/university_logos/logo2.png' %}" alt="Logo 2">
+                <img src="{% static 'app/images/university_logos/logo3.png' %}" alt="Logo 3">
+                <img src="{% static 'app/images/university_logos/logo4.png' %}" alt="Logo 4">
+                <img src="{% static 'app/images/university_logos/logo5.png' %}" alt="Logo 5">
+                <img src="{% static 'app/images/university_logos/logo6.png' %}" alt="Logo 6">
+                <img src="{% static 'app/images/university_logos/logo7.png' %}" alt="Logo 7">
+                <img src="{% static 'app/images/university_logos/logo8.png' %}" alt="Logo 8">
+                <img src="{% static 'app/images/university_logos/logo9.png' %}" alt="Logo 9">
+                <img src="{% static 'app/images/university_logos/logo10.png' %}" alt="Logo 10">
+                <img src="{% static 'app/images/university_logos/logo11.png' %}" alt="Logo 11">
+                <img src="{% static 'app/images/university_logos/logo12.png' %}" alt="Logo 12">
+                <img src="{% static 'app/images/university_logos/logo13.png' %}" alt="Logo 13">
+                <img src="{% static 'app/images/university_logos/logo14.png' %}" alt="Logo 14">
+                <img src="{% static 'app/images/university_logos/logo15.png' %}" alt="Logo 15">
+                <img src="{% static 'app/images/university_logos/logo16.png' %}" alt="Logo 16">
+                <img src="{% static 'app/images/university_logos/logo17.png' %}" alt="Logo 17">
+                <img src="{% static 'app/images/university_logos/logo18.png' %}" alt="Logo 18">
+                <img src="{% static 'app/images/university_logos/logo19.png' %}" alt="Logo 19">
+                <img src="{% static 'app/images/university_logos/logo20.png' %}" alt="Logo 20">
+                <img src="{% static 'app/images/university_logos/logo21.png' %}" alt="Logo 21">
+                <img src="{% static 'app/images/university_logos/logo22.png' %}" alt="Logo 22">
+                <img src="{% static 'app/images/university_logos/logo23.png' %}" alt="Logo 23">
+                <img src="{% static 'app/images/university_logos/logo24.png' %}" alt="Logo 24">
+                <img src="{% static 'app/images/university_logos/logo25.png' %}" alt="Logo 25">
+                <img src="{% static 'app/images/university_logos/logo26.png' %}" alt="Logo 26">
+                <img src="{% static 'app/images/university_logos/logo27.png' %}" alt="Logo 27">
+                <img src="{% static 'app/images/university_logos/logo28.png' %}" alt="Logo 28">
+                <img src="{% static 'app/images/university_logos/logo29.png' %}" alt="Logo 29">
+                <img src="{% static 'app/images/university_logos/logo30.png' %}" alt="Logo 30">
+                <img src="{% static 'app/images/university_logos/logo31.png' %}" alt="Logo 31">
+                <img src="{% static 'app/images/university_logos/logo32.png' %}" alt="Logo 32">
+                <!-- Add the rest of your logos here -->
+            </div>
+        </div>
     </section>
-    <section id="contact" class="contact">
-        <h2 class="contact">Thông tin liên hệ </h2>
+    <style>
+        /* University Logos Section */
+        .university-logos {
+            padding: 50px 20px;
+            text-align: center;
+            background-color: #ccc;
+        }
+
+        .university-logos h2 {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #343a40;
+            margin-bottom: 30px;
+        }
+
+        .logo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            /* Responsive grid */
+            gap: 20px;
+            justify-items: center;
+            /* Center items horizontally */
+        }
+
+        .logo-grid img {
+            max-width: 100px;
+            /* Adjust the size of the logos */
+            height: auto;
+            opacity: 0.7;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .logo-grid img:hover {
+            opacity: 1;
+            transform: scale(1.1);
+            /* Slight zoom on hover */
+        }
+    </style>
+    <!-- Contact Section -->
+    <section class="faq">
+        <h2>Câu hỏi thường gặp về lộ trình học</h2>
+        <div class="faq-list">
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>TOEIC là gì?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    TOEIC (Test of English for International Communication) là một bài thi đánh giá trình độ sử dụng
+                    tiếng Anh trong môi trường giao tiếp và làm việc quốc tế.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Tôi có thể tự học TOEIC được không?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Hoàn toàn có thể! Tuy nhiên, việc tự học đòi hỏi sự kiên trì, kỷ luật và khả năng tự đánh giá.
+                </div>
+            </div>
+
+            <!-- Add more FAQ items here -->
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>TOEIC có giao tiếp được không?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    TOEIC giúp bạn giao tiếp cơ bản trong môi trường công sở và sử dụng tiếng Anh trong một số tình
+                    huống thực tế.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Chứng chỉ TOEIC có được công nhận không?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Chứng chỉ TOEIC được công nhận rộng rãi bởi các trường đại học, tổ chức và doanh nghiệp trên toàn
+                    thế giới.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Lộ trình học 1 lần là đạt tại Zenlish có cam kết không?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Chúng tôi cam kết mang đến lộ trình học hiệu quả nhất, giúp bạn đạt được mục tiêu TOEIC của mình.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Học TOEIC có khó không?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Độ khó của TOEIC phụ thuộc vào trình độ hiện tại và phương pháp học của bạn.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Nên chọn TOEIC hay IELTS?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Nếu bạn cần chứng chỉ tiếng Anh để đi làm, TOEIC là lựa chọn phù hợp. Nếu bạn muốn du học hoặc định
+                    cư, IELTS có thể phù hợp hơn.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Các loại chi phí khi học TOEIC?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Các chi phí bao gồm: học phí, tài liệu học tập, lệ phí thi.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Cách đăng ký thi TOEIC</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Bạn có thể đăng ký thi TOEIC trực tuyến hoặc tại các trung tâm khảo thí được ủy quyền.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Những sai lầm thường gặp khi học TOEIC là gì?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Một số sai lầm thường gặp: học không có phương pháp, không luyện đề thường xuyên, tập trung quá
+                    nhiều vào ngữ pháp mà bỏ qua kỹ năng nghe - đọc.
+                </div>
+            </div>
+        </div>
+    </section>
+    <style>
+        /* FAQ Styles */
+        .faq {
+            padding: 30px;
+            background-color: #f8f9fa;
+        }
+
+        .faq h2 {
+            font-size: 2.2rem;
+            text-align: center;
+            margin-bottom: 30px;
+            color: #343a40;
+        }
+
+        .faq-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 15px;
+            overflow: hidden;
+            /* Important for animation */
+            transition: box-shadow 0.3s ease;
+            /* Smooth transition */
+        }
+
+        .faq-item:hover {
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        .faq-question {
+            padding: 15px 20px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #343a40;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background-color: #f1f3f5;
+        }
+
+        .faq-question i {
+            transition: transform 0.3s ease;
+        }
+
+        .faq-question.active i {
+            transform: rotate(180deg);
+            /* Rotate the icon */
+        }
+
+        .faq-answer {
+            padding: 0 20px;
+            font-size: 1rem;
+            color: #495057;
+            line-height: 1.5;
+            height: 0;
+            /* Initially hidden */
+            overflow: hidden;
+            transition: height 0.3s ease, padding 0.3s ease;
+        }
+
+        .faq-answer.active {
+            height: auto;
+            /* Expand height */
+            padding: 15px 20px;
+            /* Add padding when visible */
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const faqItems = document.querySelectorAll('.faq-item');
+
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                const answer = item.querySelector('.faq-answer');
+                const icon = item.querySelector('.faq-question i'); // Select the icon
+
+                question.addEventListener('click', () => {
+                    // Toggle active class on question
+                    question.classList.toggle('active');
+
+                    // Toggle active class on answer
+                    answer.classList.toggle('active');
+
+                    //Toggle font awesome class to chevron
+                    icon.classList.toggle('fas-fa-chevron-up');
+
+                });
+            });
+        });
+    </script>
+    <section id="contact" class="contact_info">
+        <h2 id="contact_info" class="contact_info_title" style="text-align: center; padding-top: 15px;">Thông tin liên
+            hệ </h2>
         <style>
             body {
                 background-color: rgb(255, 255, 255);
                 color: rgb(0, 0, 0);
                 font-family: sans-serif;
             }
-            
+
+            .contact_info_title {
+                font-size: 30px;
+
+            }
+
             .container {
                 display: flex;
                 justify-content: space-around;
                 padding: 20px;
             }
-            
+
             .section {
                 width: 30%;
             }
-            
+
             .address-item {
                 margin-bottom: 10px;
             }
-            
+
             .contact-item {
                 margin-bottom: 10px;
             }
-            
+
             .fanpage-item {
                 margin-bottom: 10px;
             }
-            
+
             .map-link {
                 display: block;
                 padding: 10px 20px;
@@ -138,15 +461,17 @@
                 color: white;
                 width: 100px;
             }
-            </style>
-            </head>
-            <body>
-            
+        </style>
+        </head>
+
+        <body>
+
             <div class="container">
                 <div class="section">
                     <h2>TRUNG TÂM ANH NGỮ ZENLISH</h2>
                     <div class="address-item">
-                        <strong>Cơ sở 1 – Kim Mã:</strong> Số 22A ngách 25, ngõ 629 Kim Mã, phường Ngọc Khánh, Ba Đình, Hà Nội
+                        <strong>Cơ sở 1 – Kim Mã:</strong> Số 22A ngách 25, ngõ 629 Kim Mã, phường Ngọc Khánh, Ba Đình,
+                        Hà Nội
                     </div>
                     <div class="address-item">
                         <strong>Cơ sở 2 – Hai Bà Trưng:</strong> Số 5, ngõ 128 phố Vọng, Hai Bà Trưng, Hà Nội
@@ -161,7 +486,7 @@
                         <strong>Cơ sở 5 – Nam Từ Liêm:</strong> 44 Nguyễn Hoàng, Nam Từ Liêm, Hà Nội
                     </div>
                 </div>
-            
+
                 <div class="section">
                     <h2>CÔNG TY TNHH TƯ VẤN GIÁO DỤC VÀ<br>XÚC TIẾN THƯƠNG MAI ZENLISH</h2>
                     <div class="contact-item">
@@ -170,21 +495,21 @@
                     <div class="contact-item">
                         <i class="fas fa-envelope"></i> infor@zenlish.edu.vn
                     </div>
-                    
+
                     <h3>THỜI GIAN LÀM VIỆC</h3>
                     <p>Sáng: 08:00 - 12:00 (Thứ Hai – thứ Bảy)</p>
                     <p>Chiều: 13:30 - 17:30 (Thứ Hai – Thứ Bảy)</p>
                     <p>Tối: 18:00 – 21:45 (Thứ Hai – Thứ Bảy)</p>
                 </div>
-            
+
                 <div class="section">
                     <h2>FANPAGE</h2>
                     <div class="fanpage-item">
-                       <img src="" alt="photo.png">
+                        <img src="" alt="photo.png">
                     </div>
                     <img src="" alt="photo2.png">
                 </div>
-                       
+
     </section>
 
     <!-- Course Details Modal -->
