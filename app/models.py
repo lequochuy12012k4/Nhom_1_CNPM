@@ -5,6 +5,14 @@ from django import forms
 from django.forms.widgets import PasswordInput, TextInput
 # Create your models here.
 
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    bio = models.TextField(blank=True, null=True)
+    profile_picture = models.ImageField(upload_to='profile_pics', blank=True, null=True)  # Cần cài pillow để xử lý ảnh
+
+    def __str__(self):
+        return f'{self.user.username} Profile'
+
 class Category(models.Model):
     sub_category = models.ForeignKey('self',on_delete=models.CASCADE, related_name='sub_categories',null=True, blank=True)    
     is_sub = models.BooleanField(default=False)
@@ -43,10 +51,9 @@ class CreateLoginForm(UserCreationForm):
 class CreateRegisterForm(UserCreationForm):
     password1 = forms.CharField(max_length=16, widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Mật khẩu'}))
     password2 = forms.CharField(max_length=16, widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Xác nhận mật khẩu'}))
-    phone_number = forms.CharField(max_length=16, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Nhập số điện thoại'}))
     class Meta:
         model = User
-        fields = ['first_name','last_name','username','phone_number','email', 'password1', 'password2']
+        fields = ['first_name','last_name','username','email', 'password1', 'password2']
         widgets = {
             'first_name': forms.TextInput(attrs={
                         'class':'form-control',

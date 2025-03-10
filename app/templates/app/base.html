@@ -1,5 +1,4 @@
 {% load static %}
-{% load socialaccount %}
 <!DOCTYPE html>
 <html lang="vi">
 
@@ -44,7 +43,8 @@
             <div style="visibility: {{user_login}}">
                 <ul>
                     <li class="user">
-                        <a href="">{{request.user}}</a>
+                        <a href="">{{ request.user.username }}
+                        </a>
                         <ul class="sub-menu">
                             <li><a href="{%url 'thong_tin' %}">Thông tin</a></li>
                             <li><a href="{%url 'thanh_toan' %}">Thanh toán</a></li>

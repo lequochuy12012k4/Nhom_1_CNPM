@@ -16,8 +16,25 @@ def home(request):
     context = {'user_not_login':user_not_login,'user_login':user_login}
     return render(request,'app/home.html',context)
 
-def user(request):
-    return render(request,'app/user.html')
+def Cap_nhat_thong_tinPage(request):
+    form = CreateRegisterForm()
+    if request.method == "POST":
+        form = CreateRegisterForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('login')
+    if request.user.is_authenticated:
+        user_not_login = "hidden"
+        user_login = "show"
+    else:
+        user_not_login = "show"
+        user_login = "hidden"
+    context = {
+        'user_not_login':user_not_login,
+        'user_login':user_login,
+        'form' : form
+    }
+    return render(request,'app/user/cap_nhat_thong_tin.html',context)
 
 def RegisterPage(request):
     form = CreateRegisterForm()
@@ -137,7 +154,10 @@ def Thong_tin(request):
     else:
         user_not_login = "show"
         user_login = "hidden"
-    context = {'user_not_login':user_not_login,'user_login':user_login}
+    context = {
+        'user_not_login':user_not_login,
+        'user_login':user_login
+    }
     return render(request,'app/user/thong_tin.html',context)
 
 def Thanh_toan(request):
