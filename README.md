@@ -15,11 +15,11 @@
 
 - Tester **Ngô Văn Đức**
 
-- 📫 How to reach me **This is private 😎**
+- 📫 How to reach me: **This is private 😎**
 
-- 📄 Know about my experiences [No experience 💩](No experience 💩)
+- 📄 Know about my experiences: [No experience 💩](No experience 💩)
 
-- 🤡 Joke of my team **The opponent's mistake is the opportunity for us**
+- 🤡 Joke of my team: **The opponent's mistake is the opportunity for us**
 
 <h3 align="left">Connect with me:</h3>
 <p align="left">
