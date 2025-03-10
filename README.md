@@ -1,5 +1,5 @@
-<h1 align="center">Hi 👋, Đây là Nhóm 1 - Công nghê phần mềm</h1>
-<h3 align="center">Đây là source code của chúng tôi, hay thay đổi branch main thành branch master để thấy các thay đổi của chúng tôi</h3>
+<h1 align="center">Hi 👋, This is Team 1 - CNPM</h1>
+<h3 align="center">We are One. We are always connected in every situation. </h3>
 
 - Leader: **Nguyễn Qúy Dương**
 
