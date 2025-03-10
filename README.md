@@ -3,12 +3,12 @@
 
 - Leader: **Nguyễn Qúy Dương**
 
-- Developer: **Lê Quốc Huy**
-
 - Presenter: **Phạm Nguyễn Hải Yến**
 
 - Designer: **Đinh Tiến Đạt**
-  
+
+- Developer: **Lê Quốc Huy**
+
 - Tester: **Ngô Văn Đức**
 
 - 👨‍💻 My projects is available at [https://github.com/lequochuy12012k4/Nhom_1_CNPM/tree/master](https://github.com/lequochuy12012k4/Nhom_1_CNPM/tree/master)
