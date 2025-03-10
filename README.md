@@ -17,7 +17,7 @@
 
 - 📫 How to reach me: **This is private 😎**
 
-- 📄 Know about my experiences: [No experience 💩](No experience 💩)
+- 📄 Know about my experiences: **No experience 💩**
 
 - 🤡 Joke of my team: **The opponent's mistake is the opportunity for us**
 
