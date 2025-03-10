@@ -21,7 +21,7 @@
 
 - 🤡 Joke of my team: **The opponent's mistake is the opportunity for us**
 
-<h3 align="left">Connect with me:</h3>
+<h1 align="Center">Nice to meet you 😘 and Follow my project ❤️</h1>
 <p align="left">
 </p>
 
