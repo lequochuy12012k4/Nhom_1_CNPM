@@ -1,19 +1,19 @@
 <h1 align="center">Hi 👋, Đây là Nhóm 1 - Công nghê phần mềm</h1>
 <h3 align="center">Đây là source code của chúng tôi, hay thay đổi branch main thành branch master để thấy các thay đổi của chúng tôi</h3>
 
-- Leader **Nguyễn Qúy Dương**
+- Leader: **Nguyễn Qúy Dương**
 
-- Developer **Lê Quốc Huy**
+- Developer: **Lê Quốc Huy**
 
-- Presenter **Phạm Nguyễn Hải Yến**
+- Presenter: **Phạm Nguyễn Hải Yến**
 
-- Designer **Đinh Tiến Đạt**
+- Designer: **Đinh Tiến Đạt**
+  
+- Tester: **Ngô Văn Đức**
 
 - 👨‍💻 My projects is available at [https://github.com/lequochuy12012k4/Nhom_1_CNPM/tree/master](https://github.com/lequochuy12012k4/Nhom_1_CNPM/tree/master)
 
-- 📝 I regularly write articles on [Not available 😁](Not available 😁)
-
-- Tester **Ngô Văn Đức**
+- 📝 I regularly write articles on **Not available 😁**
 
 - 📫 How to reach me: **This is private 😎**
 
