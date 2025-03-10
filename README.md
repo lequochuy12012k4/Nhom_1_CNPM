@@ -11,7 +11,7 @@
 
 - Tester: **Ngô Văn Đức**
 
-- 👨‍💻 My projects is available at [https://github.com/lequochuy12012k4/Nhom_1_CNPM/tree/master](https://github.com/lequochuy12012k4/Nhom_1_CNPM)
+- 👨‍💻 My projects is available at [https://github.com/lequochuy12012k4/Nhom_1_CNPM](https://github.com/lequochuy12012k4/Nhom_1_CNPM)
 
 - 📝 I regularly write articles on **Not available 😁**
 
