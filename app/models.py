@@ -1,17 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, UserChangeForm, PasswordChangeForm
 from django import forms  
 from django.forms.widgets import PasswordInput, TextInput
 # Create your models here.
-
-class UserProfile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    bio = models.TextField(blank=True, null=True)
-    profile_picture = models.ImageField(upload_to='profile_pics', blank=True, null=True)  # Cần cài pillow để xử lý ảnh
-
-    def __str__(self):
-        return f'{self.user.username} Profile'
 
 class Category(models.Model):
     sub_category = models.ForeignKey('self',on_delete=models.CASCADE, related_name='sub_categories',null=True, blank=True)    
@@ -73,3 +65,44 @@ class CreateRegisterForm(UserCreationForm):
                 }),
 
         }
+
+class EditProfile(UserChangeForm):
+    class Meta:
+        model = User
+        fields = ['first_name','last_name','username','email']
+        widgets = {
+        'first_name': forms.TextInput(attrs={
+            'class':'form-control',
+            
+        }),
+        'last_name': forms.TextInput(attrs={
+            'class':'form-control',
+            
+        }),
+        'username': forms.TextInput(attrs={
+            'class':'form-control',
+            
+        }),
+        'email': forms.EmailInput(attrs={
+            'class':'form-control',
+            
+        }),
+}
+class ChangePassword(PasswordChangeForm):
+    class Meta:
+        model = User
+        fields = ['old_password','new_password1','new_password2']
+        widgets = {
+        'old_password': forms.TextInput(attrs={
+            'class':'form-control',
+            'placeholder':'Mật khẩu cũ',
+        }),
+        'new_password1': forms.TextInput(attrs={
+            'class':'form-control',
+            'placeholder':'Tên',
+        }),
+        'new_password2': forms.TextInput(attrs={
+            'class':'form-control',
+            'placeholder':'Tên đăng nhập',
+        }),
+}

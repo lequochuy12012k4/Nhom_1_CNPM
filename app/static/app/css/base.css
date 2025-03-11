@@ -367,6 +367,7 @@ nav ul li.trang_chu:hover .sub-menu {
     color: #ffffff;
     transition: all 0.3s ease;
     background-color: #007bff;
+    
 }
 
 /* Add this CSS rule */
@@ -590,4 +591,7 @@ nav ul li.user:hover .sub-menu {
     transition: border-bottom;
     /* Smooth transition */
 }
-    
+.test_online_header {
+    margin-left: auto;
+    margin-right: auto;
+}

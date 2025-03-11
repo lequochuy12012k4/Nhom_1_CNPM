@@ -14,7 +14,7 @@
 </section>
 <style>
     .profile-container {
-        max-width: 800px;
+        max-width: 500px;
         margin: 20px auto;
         padding: 20px;
         background-color: #fff;
@@ -81,9 +81,9 @@
 
     <div class="profile-row">
         <div class="profile-info">
-            <p><strong>First Name:</strong> {{ user.first_name }}</p>
-            <p><strong>Last Name:</strong> {{ user.last_name }}</p>
-            <p><strong>Username:</strong> {{ user.username }}</p>
+            <p><strong>Họ:</strong> {{ user.first_name }}</p>
+            <p><strong>Tên:</strong> {{ user.last_name }}</p>
+            <p><strong>Tên đăng nhập:</strong> {{ user.username }}</p>
             <p><strong>Email:</strong> {{ user.email }}</p>
         </div>
     </div>
@@ -91,6 +91,51 @@
     <div class="profile-actions">
         <a href="{% url 'cap_nhat_thong_tin' %}" class="update-profile-button">Chỉnh sửa</a>
     </div>
+    <div class="profile-actions">
+        <a href="{% url 'thay_doi_mat_khau' %}" class="update-profile-button">Đổi mật khẩu</a>
+    </div>
 </div>
+<section id="courses" class="courses">
+    <h2>Các khóa học đã tham gia</h2>
+    <div class="course-list">
+        <!-- Các khóa học sẽ được thêm vào đây (ví dụ) -->
+        <div class="course-item" id="course-a1"> <!-- Thêm ID cho khóa học -->
+            <img src="{% static 'app\images\icons\Google.png' %}" alt="Khóa học A1">
+            <h3>Khóa học A1 - Dành cho người mới bắt đầu</h3>
+            <p>Khóa học cơ bản giúp bạn làm quen với tiếng Anh và xây dựng nền tảng vững chắc.</p>
+            <button class="btn view-course-details" data-course-id="a1">Xem chi tiết</button>
+            <!-- Thay 'a1' bằng ID khóa học thực tế -->
+        </div>
+
+        <div class="course-item" id="course-a1"> <!-- Thêm ID cho khóa học -->
+            <img src="img/course1.jpg" alt="Khóa học A1">
+            <h3>Khóa học A1 - Dành cho người mới bắt đầu</h3>
+            <p>Khóa học cơ bản giúp bạn làm quen với tiếng Anh và xây dựng nền tảng vững chắc.</p>
+            <button class="btn view-course-details" data-course-id="a1">Xem chi tiết</button>
+            <!-- Thay 'a1' bằng ID khóa học thực tế -->
+        </div>
+
+        <div class="course-item" id="course-a1"> <!-- Thêm ID cho khóa học -->
+            <img src="img/course1.jpg" alt="Khóa học A1">
+            <h3>Khóa học A1 - Dành cho người mới bắt đầu</h3>
+            <p>Khóa học cơ bản giúp bạn làm quen với tiếng Anh và xây dựng nền tảng vững chắc.</p>
+            <button class="btn view-course-details" data-course-id="a1">Xem chi tiết</button>
+            <!-- Thay 'a1' bằng ID khóa học thực tế -->
+        </div>
+
+        <div class="course-item" id="course-b1"> <!-- Thêm ID cho khóa học -->
+            <img src="img/course2.jpg" alt="Khóa học B1">
+            <h3>Khóa học B1 - Tiếng Anh giao tiếp</h3>
+            <p>Nâng cao khả năng giao tiếp tiếng Anh trong các tình huống hàng ngày.</p>
+            <button class="btn view-course-details" data-course-id="b1">Xem chi tiết</button>
+            <!-- Thay 'b1' bằng ID khóa học thực tế -->
+        </div>
+
+        <!-- Thêm các khóa học khác vào đây -->
+    </div>
+</section>
+<section id="courses" class="courses">
+    <h2>Thống kê số điểm</h2>
+</section>
 
 {% endblock content %}

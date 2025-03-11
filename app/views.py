@@ -1,10 +1,12 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm, PasswordChangeForm
 from django.contrib.auth.models import *
 from .models import *
+from django.contrib.auth.models import User
 from django.contrib.auth import login,logout,authenticate
 from django.contrib import messages
+from django.contrib.auth import update_session_auth_hash
 
 def home(request):
     if request.user.is_authenticated:
@@ -17,24 +19,55 @@ def home(request):
     return render(request,'app/home.html',context)
 
 def Cap_nhat_thong_tinPage(request):
-    form = CreateRegisterForm()
+    form = EditProfile(request.POST, instance=request.user)
     if request.method == "POST":
-        form = CreateRegisterForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('login')
-    if request.user.is_authenticated:
         user_not_login = "hidden"
         user_login = "show"
+        context = {
+            'user': request.user,
+            'user_not_login':user_not_login,
+            'user_login':user_login,
+            'form' : form
+        }
+        if form.is_valid():
+            form.save()
+            return render(request,'app/user/thong_tin.html',context)
     else:
         user_not_login = "show"
         user_login = "hidden"
-    context = {
-        'user_not_login':user_not_login,
-        'user_login':user_login,
-        'form' : form
-    }
-    return render(request,'app/user/cap_nhat_thong_tin.html',context)
+        context = {
+            'user': request.user,
+            'user_not_login':user_login,
+            'user_login':user_not_login,
+            'form' : form
+        }
+        return render(request,'app/user/cap_nhat_thong_tin.html',context)
+
+def Thay_doi_mat_khauPage(request):
+    form = ChangePassword(data = request.POST, user=request.user)
+    if request.method == "POST":
+        user_not_login = "hidden"
+        user_login = "show"
+        context = {
+            'user': request.user,
+            'user_not_login':user_not_login,
+            'user_login':user_login,
+            'form' : form
+        }
+        if form.is_valid():
+            form.save()
+            update_session_auth_hash(request,form.user)
+            return render(request,'app/user/thong_tin.html',context)
+    else:
+        user_not_login = "show"
+        user_login = "hidden"
+        context = {
+            'user': request.user,
+            'user_not_login':user_login,
+            'user_login':user_not_login,
+            'form' : form
+        }
+        return render(request,'app/user/thay_doi_mat_khau.html',context)
 
 def RegisterPage(request):
     form = CreateRegisterForm()
@@ -169,16 +202,6 @@ def Thanh_toan(request):
         user_login = "hidden"
     context = {'user_not_login':user_not_login,'user_login':user_login}
     return render(request,'app/user/thanh_toan.html',context)
-
-def Tien_trinh(request):
-    if request.user.is_authenticated:
-        user_not_login = "hidden"
-        user_login = "show"
-    else:
-        user_not_login = "show"
-        user_login = "hidden"
-    context = {'user_not_login':user_not_login,'user_login':user_login}
-    return render(request,'app/user/tien_trinh.html',context)
 
 def Vinh_danh(request):
     if request.user.is_authenticated:

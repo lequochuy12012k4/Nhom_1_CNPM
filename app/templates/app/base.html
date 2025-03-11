@@ -35,7 +35,9 @@
                 <li><a href="#contact_info" class="lien_he">Liên hệ</a></li>
                 <li><a href="{%url 'vinh_danh' %}" class="vinh_danh">Vinh danh</a></li>
             </ul>
-            <a href="{%url 'test_online' %}" class="test_online">TEST ONLINE</a>
+            <div class="test_online_header">
+                <a href="{%url 'test_online' %}" class="test_online">TEST ONLINE</a>
+            </div>
             <div class="auth" style="visibility: {{user_not_login}}">
                 <a href="{%url 'login' %}" id="loginBtn" class="login">Đăng nhập</a>
                 <a href="{%url 'register' %}" id="registerBtn" class="register">Đăng ký</a>
@@ -48,7 +50,7 @@
                         <ul class="sub-menu">
                             <li><a href="{%url 'thong_tin' %}">Thông tin</a></li>
                             <li><a href="{%url 'thanh_toan' %}">Thanh toán</a></li>
-                            <li><a href="{%url 'tien_trinh' %}">Tiến trình</a></li>
+                            <li><a href="">Ý kiến cá nhân</a></li>
                             <li><a href="{%url 'logout' %}">Đăng xuất</a></li>
                         </ul>
                     </li>

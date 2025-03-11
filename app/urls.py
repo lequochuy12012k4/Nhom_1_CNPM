@@ -14,10 +14,10 @@ urlpatterns = [
     path('gioi_thieu/',views.Gioi_thieuPage,name="gioi_thieu"),
     path('user/thong_tin/', views.Thong_tin, name="thong_tin"),
     path('user/thanh_toan/', views.Thanh_toan, name="thanh_toan"),
-    path('user/tien_trinh/', views.Tien_trinh, name="tien_trinh"),
     path('test_online/',views.Test_onlinePage, name="test_online"),
     path('vinh_danh/', views.Vinh_danh, name="vinh_danh"),
     path('course/', views.Khoa_hoc, name="course"),
     path('lo_trinh/', views.Lo_trinhPage, name="lo_trinh"),
-    path('user/cap_nhat_thong_tin/', views.Cap_nhat_thong_tinPage, name="cap_nhat_thong_tin")
+    path('user/cap_nhat_thong_tin/', views.Cap_nhat_thong_tinPage, name="cap_nhat_thong_tin"),
+    path('user/thay_doi_mat_khau/', views.Thay_doi_mat_khauPage, name="thay_doi_mat_khau")
 ]
