@@ -107,7 +107,7 @@ def Lo_trinhPage(request):
     return render(request,'app/lo_trinh.html')
 
 #Link to "Lịch khai giảng"
-def Lich_khai_giangPage(request):
+def Tai_lieuPage(request):
     if request.user.is_authenticated:
         user_not_login = "hidden"
         user_login = "show"
@@ -115,7 +115,7 @@ def Lich_khai_giangPage(request):
         user_not_login = "show"
         user_login = "hidden"
     context = {'user_not_login':user_not_login,'user_login':user_login}
-    return render(request,'app/lich_khai_giang.html',context)
+    return render(request,'app/tai_lieu.html',context)
 
 #Link to "Flash_card"
 import os

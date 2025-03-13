@@ -395,7 +395,7 @@ nav ul li.trang_chu:hover .sub-menu {
     /* Smooth transition */
 }
 
-.lich_khai_giang:hover {
+.tai_lieu:hover {
     color: #0056b3;
     /* Or any color you prefer */
     border-bottom: 4px solid #0056b3;
