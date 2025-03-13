@@ -7,9 +7,7 @@
 
 - Designer: **Phạm Nguyễn Hải Yến**
 
-- Developer: **Lê Quốc Huy, Nguyễn Quý Dương**
-
-- Tester: **Ngô Văn Đức**
+- Developer: **Lê Quốc Huy, Nguyễn Quý Dương, Ngô Văn Đức**
 
 - Kanban: **Phạm Nguyễn Hải Yến**
 
