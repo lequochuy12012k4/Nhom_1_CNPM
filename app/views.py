@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import login,logout,authenticate
 from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
+from django.http import HttpResponse
 
 def home(request):
     if request.user.is_authenticated:
@@ -116,6 +117,62 @@ def Lich_khai_giangPage(request):
     context = {'user_not_login':user_not_login,'user_login':user_login}
     return render(request,'app/lich_khai_giang.html',context)
 
+#Link to "Flash_card"
+import os
+from django.conf import settings
+from django.shortcuts import render
+from django import forms
+
+class AddWordForm(forms.Form):
+    new_word = forms.CharField(label="Từ mới")
+    new_meaning = forms.CharField(label="Nghĩa")
+    new_example = forms.CharField(label="Ví dụ", widget=forms.Textarea)
+
+def Flash_CardPage(request):
+    if request.user.is_authenticated:
+        user_not_login = "hidden"
+        user_login = "show"
+    else:
+        user_not_login = "show"
+        user_login = "hidden"
+
+    file = open(os.path.join(settings.BASE_DIR, 'app\\static\\app\\data\\Book2.csv'),encoding='utf-8-sig')
+    key = file.readline().strip()
+    keys = key.split(",")
+
+    value = file.readline().strip()
+    data_word = []
+    while value!="":
+        index = 0
+        values = value.split(",")
+        index_data = {}
+        for index in range(len(keys)):
+            if keys[index] == 'id':
+                values[index] = int(values[index])
+
+            my_dict = {keys[index]:values[index]}
+            index_data.update(my_dict)
+        data_word.append(index_data)
+        value = file.readline().strip()
+
+    if request.method == 'POST':
+        form = AddWordForm(request.POST)
+        if form.is_valid():
+            new_word = form.cleaned_data['new_word']
+            new_meaning = form.cleaned_data['new_meaning']
+            new_example = form.cleaned_data['new_example']
+
+            # Add the new word to the data_word list (in-memory only)
+            data_word.append({'word': new_word, 'meaning': new_meaning, 'example': new_example})
+
+            # Re-initialize the form
+            form = AddWordForm()
+    else:
+        form = AddWordForm()  # Create a blank form instance
+
+    context = {'user_not_login': user_not_login, 'user_login': user_login, 'data_word':data_word, 'form':form}
+    return render(request,'app/flash_card.html',context)
+
 #Link to "Khóa học"
 def Khoa_hoc(request):
     if request.user.is_authenticated:
@@ -203,6 +260,8 @@ def Thanh_toan(request):
     context = {'user_not_login':user_not_login,'user_login':user_login}
     return render(request,'app/user/thanh_toan.html',context)
 
+import os
+from django.conf import settings
 def Vinh_danh(request):
     if request.user.is_authenticated:
         user_not_login = "hidden"
@@ -210,21 +269,24 @@ def Vinh_danh(request):
     else:
         user_not_login = "show"
         user_login = "hidden"
-    rankings = [
-        {'rank': 1, 'username': 'JohnDoe', 'score': 1000},
-        {'rank': 2, 'username': 'JaneSmith', 'score': 950},
-        {'rank': 4, 'username': 'PeterJones', 'score': 900},
-        {'rank': 5, 'username': 'PeterJones', 'score': 900},
-        {'rank': 6, 'username': 'PeterJones', 'score': 900},
-        {'rank': 7, 'username': 'PeterJones', 'score': 900},
-        {'rank': 8, 'username': 'PeterJones', 'score': 900},
-        {'rank': 9, 'username': 'PeterJones', 'score': 900},
-        {'rank': 10, 'username': 'PeterJones', 'score': 900},
-        {'rank': 11, 'username': 'PeterJones', 'score': 900},
-        {'rank': 12, 'username': 'PeterJones', 'score': 900},
-        {'rank': 13, 'username': 'PeterJones', 'score': 900},
-        {'rank': 14, 'username': 'PeterJones', 'score': 900},
-        {'rank': 15, 'username': 'PeterJones', 'score': 900},
-    ]
-    context = {'user_not_login':user_not_login,'user_login':user_login, 'rankings': rankings}
+
+    file = open(os.path.join(settings.BASE_DIR, 'app\\static\\app\\data\\Book1.csv'),encoding='utf-8-sig')
+    key = file.readline().strip()
+    keys = key.split(",")
+
+    value = file.readline().strip()
+    data_rankings = []
+    while value!="":
+        index = 0
+        values = value.split(",")
+        index_data = {}
+        for index in range(len(keys)):
+            if keys[index] == 'score' or keys[index] == 'rank':
+                values[index] = int(values[index])
+            
+            my_dict = {keys[index]:values[index]}
+            index_data.update(my_dict)   
+        data_rankings.append(index_data)
+        value = file.readline().strip()
+    context = {'user_not_login':user_not_login,'user_login':user_login, 'data_ranking': data_rankings}
     return render(request,'app/vinh_danh.html', context)

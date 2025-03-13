@@ -164,7 +164,7 @@ AUTHENITICATION_BACKENDS = {
 import os
 MEDIA_URL = 'media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
+PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
 LOGIN_REDIRECT_URL = ""
 LOGOUT_REDIRECT_URL = "/"
 SOCIALACCOUNT_AUTO_SIGNUP = True
