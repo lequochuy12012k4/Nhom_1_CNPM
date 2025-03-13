@@ -1,15 +1,17 @@
 <h1 align="center">Hi 👋, This is Team 1 - CNPM</h1>
 <h3 align="center">We are One. We are always connected in every situation. </h3>
 
-- Leader: **Nguyễn Qúy Dương**
+- Leader: **Đinh Tiến Đạt** 
 
-- Presenter: **Phạm Nguyễn Hải Yến**
+- Presenter: **Nguyễn Quý Dương**
 
-- Designer: **Đinh Tiến Đạt**
+- Designer: **Phạm Nguyễn Hải Yến**
 
-- Developer: **Lê Quốc Huy**
+- Developer: **Lê Quốc Huy, Nguyễn Quý Dương**
 
 - Tester: **Ngô Văn Đức**
+
+- Kanban: **Phạm Nguyễn Hải Yến**
 
 - 👨‍💻 My projects is available at [https://github.com/lequochuy12012k4/Nhom_1_CNPM](https://github.com/lequochuy12012k4/Nhom_1_CNPM)
 
