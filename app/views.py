@@ -173,6 +173,16 @@ def Flash_CardPage(request):
     context = {'user_not_login': user_not_login, 'user_login': user_login, 'data_word':data_word, 'form':form}
     return render(request,'app/flash_card.html',context)
 
+def FlashCardTuhocPage(request):
+    if request.user.is_authenticated:
+        user_not_login = "hidden"
+        user_login = "show"
+    else:
+        user_not_login = "show"
+        user_login = "hidden"
+    context = {'user_not_login':user_not_login,'user_login':user_login}
+    return render(request,'app/flash_card_tu_hoc.html',context)
+
 #Link to "Khóa học"
 def Khoa_hoc(request):
     if request.user.is_authenticated:

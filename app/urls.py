@@ -20,5 +20,6 @@ urlpatterns = [
     path('lo_trinh/', views.Lo_trinhPage, name="lo_trinh"),
     path('user/cap_nhat_thong_tin/', views.Cap_nhat_thong_tinPage, name="cap_nhat_thong_tin"),
     path('user/thay_doi_mat_khau/', views.Thay_doi_mat_khauPage, name="thay_doi_mat_khau"),
-    path('flash_card/',views.Flash_CardPage, name="flash_card")
+    path('flash_card/',views.Flash_CardPage, name="flash_card"),
+    path('tu_hoc_flash_card/',views.FlashCardTuhocPage, name="flash_card_tu_hoc"),
 ]

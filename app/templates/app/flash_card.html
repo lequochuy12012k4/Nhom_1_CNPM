@@ -8,7 +8,8 @@
     <section class="hero">
         <div class="hero-content">
             <h1>Flash Card</h1>
-            <p>Học tiếng Anh trực tuyến với các khóa học chất lượng cao, bài giảng thú vị và đội ngũ giáo viên tận tâm.
+            <p>Hệ thống chúng tôi luôn cho bạn các từ mới bằng việc sử dụng flash card để dễ dàng cho việc học của bạn.</p>
+            <p> Các bạn cũng có thể tự thêm từ mới của bạn vào flash card của chúng tôi. Nhấn <a href="{%url 'flash_card_tu_hoc' %}">tại đây</a> để trải nghiệm
             </p>
         </div>
         <div class="hero-image">
@@ -477,9 +478,8 @@
                 currentIndex = words.length -1; //Go to the newly created card
                 updateCard();
                 updateButtons();
-
              } else {
-                 alert('Vui lòng điền đầy đủ thông tin.');
+                alert('Vui lòng điền đầy đủ thông tin.');
              }
          });
     </script>
