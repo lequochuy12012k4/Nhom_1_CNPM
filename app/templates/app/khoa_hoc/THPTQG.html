@@ -1,59 +1,241 @@
 {% extends 'app/base.html' %}
 {% load static %}
 {% block content %}
+
 <body>
-    
     <section class="hero">
         <div class="hero-content">
-            <h1>Trung học phổ thông quốc gia    </h1>
+            <h1>Tung học phổ thông quốc gia</h1>
             <p>Học tiếng Anh trực tuyến với các khóa học chất lượng cao, bài giảng thú vị và đội ngũ giáo viên tận tâm.
             </p>
         </div>
-        <div class="hero-image">
-            <img src="z.jpg" alt="Người học tiếng Anh">
+        <div class="slider">
+            <div class="slide">
+                <img src="{% static 'app/images/photo/slider_home/slider1.jpg' %}" alt="Người học tiếng Anh 1">
+            </div>
+            <div class="slide">
+                <img src="{% static 'app/images/photo/slider_home/slider2.jpg' %}" alt="Người học tiếng Anh 2">
+            </div>
+            <div class="slide">
+                <img src="{% static 'app/images/photo/slider_home/slider3.jpg' %}" alt="Người học tiếng Anh 3">
+            </div>
+            <!-- Add more slides here -->
+            <style>
+                .slider {
+                    width: 500px;
+                    /* Adjust as needed */
+                    height: 300px;
+                    /* Adjust as needed */
+                    overflow: hidden;
+                    position: relative;
+                }
+
+                .slide {
+                    width: 100%;
+                    height: 100%;
+                    position: absolute;
+                    top: 0;
+                    left: 100%; /* Start off-screen to the right */
+                    transition: left 1s ease-in-out;
+                }
+
+                .slide img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    /* Maintain aspect ratio */
+                }
+
+                .slide.active {
+                    left: 0; /* Bring the active slide into view */
+                }
+            </style>
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    const slides = document.querySelectorAll('.slide');
+                    let currentSlide = 0;
+        
+                    // Initially set all slides to be offscreen to the right.  This makes the "cover" animation work
+                    slides.forEach((slide, index) => {
+                        slide.style.left = '100%';
+                        if (index === 0) {
+                            slide.classList.add('active');
+                            slide.style.left = '0'; // Make the initial slide visible.
+                        } else {
+                            slide.classList.remove('active');
+                        }
+                    });
+        
+                    function showSlide(n) {
+                        // Remove active class from current slide
+                        slides[currentSlide].classList.remove('active');
+                        slides[currentSlide].style.left = '-100%'; // Move current slide offscreen to the left
+        
+                        // Update current slide
+                        currentSlide = n;
+        
+                        // Add active class to new slide
+                        slides[currentSlide].classList.add('active');
+                        slides[currentSlide].style.left = '0'; // Slide in from the right
+                    }
+        
+                    function nextSlide() {
+                        let next = (currentSlide + 1) % slides.length;
+                        showSlide(next);
+                    }
+        
+                    setInterval(nextSlide, 3000); // Change slide every 3 seconds
+                });
+            </script>
         </div>
     </section>
+    <section id="toeic-slider" class="courses">
+        <h2>Khóa học được lựa chọn nhiều</h2>
+        <div class="course-slider-container">
+            <div class="course-slider">
+                <!-- Individual slide for each TOEIC course -->
+                <div class="course-slide">
+                    <img src="{% static 'app/images/photo/slider_home/slider3.jpg' %}" alt="Khóa học A1">
+                    <h3>Luyện thi TOEIC cấp tốc</h3>
+                    <p>Khóa học giúp bạn đạt điểm cao trong thời gian ngắn.</p>
+                    <button class="btn view-course-details" data-course-id="toeic-1">Xem chi tiết</button>
+                </div>
 
+                <div class="course-slide">
+                    <img src="{% static 'app/images/photo/slider_home/slider3.jpg' %}" alt="Khóa học A1">
+                    <h3>Khóa học A1 - Dành cho người mới bắt đầu</h3>
+                    <p>Khóa học cơ bản giúp bạn làm quen với tiếng Anh và xây dựng nền tảng vững chắc.</p>
+                    <button class="btn view-course-details" data-course-id="toeic-a1">Xem chi tiết</button>
+                </div>
+
+                <div class="course-slide">
+                    <img src="{% static 'app/images/photo/slider_home/slider3.jpg' %}" alt="Khóa học B1">
+                    <h3>Khóa học B1 - Tiếng Anh giao tiếp</h3>
+                    <p>Nâng cao khả năng giao tiếp tiếng Anh trong các tình huống hàng ngày.</p>
+                    <button class="btn view-course-details" data-course-id="toeic-b1">Xem chi tiết</button>
+                </div>
+                <!-- Add more slides as needed -->
+            </div>
+        </div>
+        <style>
+            .course-slider-container {
+            width: 80%;
+            margin: 20px auto;
+            overflow: hidden;
+        }
+
+        .course-slider {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .course-slide {
+            min-width: 100%;
+            /* Each slide takes full width */
+            padding: 20px;
+            box-sizing: border-box;
+            text-align: center;
+            font-size: 25px;
+        }
+
+        .course-slide img {
+            max-width: 100px;
+            height: auto;
+        }
+        </style>
+         <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const slider = document.querySelector('.course-slider');
+                const slides = document.querySelectorAll('.course-slide');
+                let currentIndex = 0;
+                const slideInterval = 3000; // Adjust slide interval as needed
+    
+                function nextSlide() {
+                    currentIndex = (currentIndex + 1) % slides.length;
+                    updateSliderPosition();
+                }
+    
+                function updateSliderPosition() {
+                    const translateValue = -currentIndex * 100 + '%';
+                    slider.style.transform = 'translateX(' + translateValue + ')';
+                }
+    
+                setInterval(nextSlide, slideInterval);
+            });
+        </script>
+    </section>
     <!-- Courses Section -->
     <section id="courses" class="courses">
-        <h2>Khóa học</h2>
-        <div class="course-list">
+        <h2>TOEIC</h2>
+        <div class="giao_vien-list">
             <!-- Các khóa học sẽ được thêm vào đây (ví dụ) -->
-            <div class="course-item" id="course-a1"> <!-- Thêm ID cho khóa học -->
-                <img src="img/course1.jpg" alt="Khóa học A1">
+            <div class="giao_vien-item" id="giao_vien-a1"> <!-- Thêm ID cho khóa học -->
+                <img src="{% static 'app/images/photo/slider_home/slider3.jpg' %}" alt="Khóa học A1">
                 <h3>Khóa học A1 - Dành cho người mới bắt đầu</h3>
                 <p>Khóa học cơ bản giúp bạn làm quen với tiếng Anh và xây dựng nền tảng vững chắc.</p>
-                <button class="btn view-course-details" data-course-id="a1">Xem chi tiết</button>
+                <button class="btn view-course-details" data-course-id="TiengAnhGiaoTiep">Xem chi tiết</button>
+            </div>
+
+            <div class="giao_vien-item" id="giao_vien-a1"> <!-- Thêm ID cho khóa học -->
+                <img src="{% static 'app/images/photo/slider_home/slider3.jpg' %}" alt="Khóa học A1">
+                <h3>Khóa học A1 - Dành cho người mới bắt đầu</h3>
+                <p>Khóa học cơ bản giúp bạn làm quen với tiếng Anh và xây dựng nền tảng vững chắc.</p>
+                <button class="btn view-course-details" data-course-id="TiengAnhGiaoTiep">Xem chi tiết</button>
+                <!-- Thay 'a1' bằng ID khóa học thực tế -->
+            </div>
+
+            <div class="giao_vien-item" id="giao_vien-a1"> <!-- Thêm ID cho khóa học -->
+                <img src="{% static 'app/images/photo/slider_home/slider3.jpg' %}" alt="Khóa học A1">
+                <h3>Khóa học A1 - Dành cho người mới bắt đầu</h3>
+                <p>Khóa học cơ bản giúp bạn làm quen với tiếng Anh và xây dựng nền tảng vững chắc.</p>
+                <button class="btn view-course-details" data-course-id="TiengAnhGiaoTiep">Xem chi tiết</button>
                 <!-- Thay 'a1' bằng ID khóa học thực tế -->
             </div>
 
             <div class="course-item" id="course-b1"> <!-- Thêm ID cho khóa học -->
-                <img src="img/course2.jpg" alt="Khóa học B1">
+                <img src="{% static 'app/images/photo/slider_home/slider3.jpg' %}" alt="Khóa học B1">
                 <h3>Khóa học B1 - Tiếng Anh giao tiếp</h3>
                 <p>Nâng cao khả năng giao tiếp tiếng Anh trong các tình huống hàng ngày.</p>
-                <button class="btn view-course-details" data-course-id="b1">Xem chi tiết</button>
+                <button class="btn view-course-details" data-course-id="TiengAnhGiaoTiep">Xem chi tiết</button>
                 <!-- Thay 'b1' bằng ID khóa học thực tế -->
             </div>
 
             <!-- Thêm các khóa học khác vào đây -->
         </div>
     </section>
-
     <section id="courses" class="courses">
-        <h2>Đội ngũ giáo viên</h2>
+        <h2>IELTS</h2>
         <div class="giao_vien-list">
             <!-- Các khóa học sẽ được thêm vào đây (ví dụ) -->
             <div class="giao_vien-item" id="giao_vien-a1"> <!-- Thêm ID cho khóa học -->
-                <img src="img/course1.jpg" alt="Khóa học A1">
+                <img src="{% static 'app/images/photo/slider_home/slider3.jpg' %}" alt="Khóa học A1">
                 <h3>Khóa học A1 - Dành cho người mới bắt đầu</h3>
                 <p>Khóa học cơ bản giúp bạn làm quen với tiếng Anh và xây dựng nền tảng vững chắc.</p>
+                <button class="btn view-course-details" data-course-id="TiengAnhGiaoTiep">Xem chi tiết</button>
+                <!-- Thay 'a1' bằng ID khóa học thực tế -->
+            </div>
+
+            <div class="giao_vien-item" id="giao_vien-a1"> <!-- Thêm ID cho khóa học -->
+                <img src="{% static 'app/images/photo/slider_home/slider3.jpg' %}" alt="Khóa học A1">
+                <h3>Khóa học A1 - Dành cho người mới bắt đầu</h3>
+                <p>Khóa học cơ bản giúp bạn làm quen với tiếng Anh và xây dựng nền tảng vững chắc.</p>
+                <button class="btn view-course-details" data-course-id="TiengAnhGiaoTiep">Xem chi tiết</button>
+                <!-- Thay 'a1' bằng ID khóa học thực tế -->
+            </div>
+
+            <div class="giao_vien-item" id="giao_vien-a1"> <!-- Thêm ID cho khóa học -->
+                <img src="{% static 'app/images/photo/slider_home/slider3.jpg' %}" alt="Khóa học A1">
+                <h3>Khóa học A1 - Dành cho người mới bắt đầu</h3>
+                <p>Khóa học cơ bản giúp bạn làm quen với tiếng Anh và xây dựng nền tảng vững chắc.</p>
+                <button class="btn view-course-details" data-course-id="TiengAnhGiaoTiep">Xem chi tiết</button>
                 <!-- Thay 'a1' bằng ID khóa học thực tế -->
             </div>
 
             <div class="course-item" id="course-b1"> <!-- Thêm ID cho khóa học -->
-                <img src="img/course2.jpg" alt="Khóa học B1">
+                <img src="{% static 'app/images/photo/slider_home/slider3.jpg' %}" alt="Khóa học B1">
                 <h3>Khóa học B1 - Tiếng Anh giao tiếp</h3>
                 <p>Nâng cao khả năng giao tiếp tiếng Anh trong các tình huống hàng ngày.</p>
+                <button class="btn view-course-details" data-course-id="TiengAnhGiaoTiep">Xem chi tiết</button>
                 <!-- Thay 'b1' bằng ID khóa học thực tế -->
             </div>
 
@@ -63,35 +245,541 @@
 
     <!-- Testimonials Section -->
     <section id="testimonials" class="testimonials">
-        <h2>Cảm nhận học viên</h2>
+        <h2>THPTQG</h2>
         <div class="testimonial-list">
-            <div class="testimonial-item">
-                <p>"Tôi đã cải thiện đáng kể khả năng tiếng Anh của mình nhờ các khóa học tại đây. Giáo viên rất nhiệt
-                    tình và bài giảng rất thú vị."</p>
-                <p>- Nguyễn Văn A</p>
+            <div class="giao_vien-item" id="giao_vien-a1"> <!-- Thêm ID cho khóa học -->
+                <img src="{% static 'app/images/photo/slider_home/slider3.jpg' %}" alt="Khóa học A1">
+                <h3>Khóa học A1 - Dành cho người mới bắt đầu</h3>
+                <p>Khóa học cơ bản giúp bạn làm quen với tiếng Anh và xây dựng nền tảng vững chắc.</p>
+                <button class="btn view-course-details" data-course-id="TiengAnhGiaoTiep">Xem chi tiết</button>
+                <!-- Thay 'a1' bằng ID khóa học thực tế -->
             </div>
 
-            <div class="testimonial-item">
-                <p>"Giao diện thân thiện, dễ sử dụng. Các bài tập tương tác giúp tôi học tiếng Anh hiệu quả hơn."</p>
-                <p>- Trần Thị B</p>
+            <div class="giao_vien-item" id="giao_vien-a1"> <!-- Thêm ID cho khóa học -->
+                <img src="{% static 'app/images/photo/slider_home/slider3.jpg' %}" alt="Khóa học A1">
+                <h3>Khóa học A1 - Dành cho người mới bắt đầu</h3>
+                <p>Khóa học cơ bản giúp bạn làm quen với tiếng Anh và xây dựng nền tảng vững chắc.</p>
+                <button class="btn view-course-details" data-course-id="TiengAnhGiaoTiep">Xem chi tiết</button>
+                <!-- Thay 'a1' bằng ID khóa học thực tế -->
+            </div>
+
+            <div class="giao_vien-item" id="giao_vien-a1"> <!-- Thêm ID cho khóa học -->
+                <img src="{% static 'app/images/photo/slider_home/slider3.jpg' %}" alt="Khóa học A1">
+                <h3>Khóa học A1 - Dành cho người mới bắt đầu</h3>
+                <p>Khóa học cơ bản giúp bạn làm quen với tiếng Anh và xây dựng nền tảng vững chắc.</p>
+                <button class="btn view-course-details" data-course-id="TiengAnhGiaoTiep">Xem chi tiết</button>
+                <!-- Thay 'a1' bằng ID khóa học thực tế -->
+            </div>
+
+            <div class="giao_vien-item" id="giao_vien-a1"> <!-- Thêm ID cho khóa học -->
+                <img src="{% static 'app/images/photo/slider_home/slider3.jpg' %}" alt="Khóa học A1">
+                <h3>Khóa học A1 - Dành cho người mới bắt đầu</h3>
+                <p>Khóa học cơ bản giúp bạn làm quen với tiếng Anh và xây dựng nền tảng vững chắc.</p>
+                <button class="btn view-course-details" data-course-id="TiengAnhGiaoTiep">Xem chi tiết</button>
+                <!-- Thay 'a1' bằng ID khóa học thực tế -->
             </div>
 
             <!-- Thêm các lời chứng thực khác vào đây -->
         </div>
     </section>
-    
 
     <!-- Contact Section -->
+    <section class="university-logos">
+        <div class="">
+            <h2>English4All tự hào khi là lựa chọn của +30.000 sinh viên<br>tại nhiều trường Đại học, Cao đẳng</h2>
+            <div class="logo-grid">
+                <img src="{% static 'app/images/university_logos/PTIT.jpg' %}" alt="Logo 1">
+                <img src="{% static 'app/images/university_logos/PTIT.jpg' %}" alt="Logo 2">
+                <img src="{% static 'app/images/university_logos/PTIT.jpg' %}" alt="Logo 3">
+                <img src="{% static 'app/images/university_logos/PTIT.jpg' %}" alt="Logo 4">
+                <img src="{% static 'app/images/university_logos/PTIT.jpg' %}" alt="Logo 5">
+                <img src="{% static 'app/images/university_logos/PTIT.jpg' %}" alt="Logo 6">
+                <img src="{% static 'app/images/university_logos/PTIT.jpg' %}" alt="Logo 7">
+                <img src="{% static 'app/images/university_logos/PTIT.jpg' %}" alt="Logo 8">
+                <img src="{% static 'app/images/university_logos/PTIT.jpg' %}" alt="Logo 9">
+                <img src="{% static 'app/images/university_logos/PTIT.jpg' %}" alt="Logo 10">
+                <img src="{% static 'app/images/university_logos/PTIT.jpg' %}" alt="Logo 11">
+                <img src="{% static 'app/images/university_logos/PTIT.jpg' %}" alt="Logo 12">
+                <img src="{% static 'app/images/university_logos/PTIT.jpg' %}" alt="Logo 13">
+                <img src="{% static 'app/images/university_logos/PTIT.jpg' %}" alt="Logo 14">
+                <img src="{% static 'app/images/university_logos/PTIT.jpg' %}" alt="Logo 15">
+                <img src="{% static 'app/images/university_logos/PTIT.jpg' %}" alt="Logo 16">
+                <img src="{% static 'app/images/university_logos/PTIT.jpg' %}" alt="Logo 17">
+                <img src="{% static 'app/images/university_logos/PTIT.jpg' %}" alt="Logo 18">
+                <img src="{% static 'app/images/university_logos/PTIT.jpg' %}" alt="Logo 19">
+                <img src="{% static 'app/images/university_logos/PTIT.jpg' %}" alt="Logo 20">
+                <img src="{% static 'app/images/university_logos/PTIT.jpg' %}" alt="Logo 21">
+                <img src="{% static 'app/images/university_logos/PTIT.jpg' %}" alt="Logo 22">
+                <img src="{% static 'app/images/university_logos/PTIT.jpg' %}" alt="Logo 23">
+                <img src="{% static 'app/images/university_logos/PTIT.jpg' %}" alt="Logo 24">
+                <img src="{% static 'app/images/university_logos/PTIT.jpg' %}" alt="Logo 25">
+                <img src="{% static 'app/images/university_logos/PTIT.jpg' %}" alt="Logo 26">
+                <img src="{% static 'app/images/university_logos/PTIT.jpg' %}" alt="Logo 27">
+                <img src="{% static 'app/images/university_logos/PTIT.jpg' %}" alt="Logo 28">
+                <img src="{% static 'app/images/university_logos/PTIT.jpg' %}" alt="Logo 29">
+                <img src="{% static 'app/images/university_logos/PTIT.jpg' %}" alt="Logo 30">
+                <img src="{% static 'app/images/university_logos/PTIT.jpg' %}" alt="Logo 31">
+                <img src="{% static 'app/images/university_logos/PTIT.jpg' %}" alt="Logo 32">
+
+                <!-- Add the rest of your logos here -->
+            </div>
+        </div>
+    </section>
+    <style>
+        /* University Logos Section */
+        .university-logos {
+            padding: 50px 20px;
+            text-align: center;
+            background-color: #ccc;
+        }
+
+        .university-logos h2 {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #343a40;
+            margin-bottom: 30px;
+        }
+
+        .logo-grid {
+            display: grid;
+            grid-template-columns: repeat(8, 0fr);
+            /* Hiển thị 8 logos trên một hàng */
+            justify-items: center;
+            padding-left: 500px;
+            margin-bottom: 30px;
+        }
+
+        .logo-grid img {
+            max-width: 100px;
+            /* Adjust the size of the logos */
+            height: auto;
+            opacity: 0.7;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .logo-grid img:hover {
+            opacity: 1;
+            transform: scale(1.1);
+            /* Slight zoom on hover */
+        }
+
+        /* Basic Slider Styles */
+        .slider {
+            width: 500px;
+            /* Adjust as needed */
+            height: 300px;
+            /* Adjust as needed */
+            overflow: hidden;
+            position: relative;
+        }
+
+        .slide {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 100%;
+            /* Start off-screen to the right */
+            transition: left 1s ease-in-out;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* Maintain aspect ratio */
+        }
+
+        .slide.active {
+            left: 0;
+            /* Bring the active slide into view */
+        }
+    </style>
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <h2>Thông tin đăng ký</h2>
+        <form>
+            <input type="text" placeholder="Họ và tên">
+            <input type="email" placeholder="Email của bạn">
+            <input type="text" placeholder="Số điện thoại">
+            <input type="text" placeholder="Trường học">
+            <input list="loai_chung_chi" placeholder="Loại chứng chỉ">
+            <datalist id="loai_chung_chi">
+                <option value="TOEIC"></option>
+                <option value="IELTS"></option>
+                <option value="APTIS"></option>
+            </datalist>
+            <input type="number" placeholder="Mục tiêu">
+            <button type="submit" class="btn">Đăng ký ngay</button>
+        </form>
+    </section>
+    <section class="faq">
+        <h2>Câu hỏi thường gặp về lộ trình học</h2>
+        <div class="faq-list">
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>TOEIC là gì?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    TOEIC (Test of English for International Communication) là một bài thi đánh giá trình độ sử dụng
+                    tiếng Anh trong môi trường giao tiếp và làm việc quốc tế.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Tôi có thể tự học TOEIC được không?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Hoàn toàn có thể! Tuy nhiên, việc tự học đòi hỏi sự kiên trì, kỷ luật và khả năng tự đánh giá.
+                </div>
+            </div>
+
+            <!-- Add more FAQ items here -->
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>TOEIC có giao tiếp được không?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    TOEIC giúp bạn giao tiếp cơ bản trong môi trường công sở và sử dụng tiếng Anh trong một số tình
+                    huống thực tế.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Chứng chỉ TOEIC có được công nhận không?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Chứng chỉ TOEIC được công nhận rộng rãi bởi các trường đại học, tổ chức và doanh nghiệp trên toàn
+                    thế giới.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Lộ trình học 1 lần là đạt tại English4All có cam kết không?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Chúng tôi cam kết mang đến lộ trình học hiệu quả nhất, giúp bạn đạt được mục tiêu TOEIC của mình.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Học TOEIC có khó không?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Độ khó của TOEIC phụ thuộc vào trình độ hiện tại và phương pháp học của bạn.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Nên chọn TOEIC hay IELTS?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Nếu bạn cần chứng chỉ tiếng Anh để đi làm, TOEIC là lựa chọn phù hợp. Nếu bạn muốn du học hoặc định
+                    cư, IELTS có thể phù hợp hơn.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Các loại chi phí khi học TOEIC?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Các chi phí bao gồm: học phí, tài liệu học tập, lệ phí thi.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Cách đăng ký thi TOEIC</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Bạn có thể đăng ký thi TOEIC trực tuyến hoặc tại các trung tâm khảo thí được ủy quyền.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Những sai lầm thường gặp khi học TOEIC là gì?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Một số sai lầm thường gặp: học không có phương pháp, không luyện đề thường xuyên, tập trung quá
+                    nhiều vào ngữ pháp mà bỏ qua kỹ năng nghe - đọc.
+                </div>
+            </div>
+        </div>
+    </section>
+    <style>
+        /* FAQ Styles */
+        .faq {
+            padding: 30px;
+            background-color: #f8f9fa;
+        }
+
+        .faq h2 {
+            font-size: 2.2rem;
+            text-align: center;
+            margin-bottom: 30px;
+            color: #343a40;
+        }
+
+        .faq-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 15px;
+            overflow: hidden;
+            /* Important for animation */
+            transition: box-shadow 0.3s ease;
+            /* Smooth transition */
+        }
+
+        .faq-item:hover {
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        .faq-question {
+            padding: 15px 20px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #343a40;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background-color: #f1f3f5;
+        }
+
+        .faq-question i {
+            transition: transform 0.3s ease;
+        }
+
+        .faq-question.active i {
+            transform: rotate(180deg);
+            /* Rotate the icon */
+        }
+
+        .faq-answer {
+            padding: 0 20px;
+            font-size: 1rem;
+            color: #495057;
+            line-height: 1.5;
+            height: 0;
+            /* Initially hidden */
+            overflow: hidden;
+            transition: height 0.3s ease, padding 0.3s ease;
+        }
+
+        .faq-answer.active {
+            height: auto;
+            /* Expand height */
+            padding: 15px 20px;
+            /* Add padding when visible */
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const faqItems = document.querySelectorAll('.faq-item');
+
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                const answer = item.querySelector('.faq-answer');
+                const icon = item.querySelector('.faq-question i'); // Select the icon
+
+                question.addEventListener('click', () => {
+                    // Toggle active class on question
+                    question.classList.toggle('active');
+
+                    // Toggle active class on answer
+                    answer.classList.toggle('active');
+
+                    //Toggle font awesome class to chevron
+                    icon.classList.toggle('fas-fa-chevron-up');
+
+                });
+            });
+        });
+    </script>
+    <section id="contact" class="contact_info">
+        <h2 id="contact_info" class="contact_info_title" style="text-align: center; padding-top: 15px;">Thông tin liên
+            hệ </h2>
+        <style>
+            body {
+                background-color: rgb(255, 255, 255);
+                color: rgb(0, 0, 0);
+                font-family: sans-serif;
+            }
+
+            .contact_info_title {
+                font-size: 30px;
+
+            }
+
+            .container {
+                display: flex;
+                justify-content: space-around;
+                padding: 20px;
+            }
+
+            .section {
+                width: 30%;
+            }
+
+            .address-item {
+                margin-bottom: 10px;
+            }
+
+            .contact-item {
+                margin-bottom: 10px;
+            }
+
+            .map-link {
+                display: block;
+                padding: 10px 20px;
+                border: 1px solid white;
+                text-align: center;
+                text-decoration: none;
+                color: white;
+                width: 100px;
+            }
+        </style>
+        </head>
+
+        <body>
+
+            <div class="container">
+                <div class="section">
+                    <h2>TRUNG TÂM ANH NGỮ English4All</h2>
+                    <div class="address-item">
+                        <strong>Cơ sở 1 – Kim Mã:</strong> Số 22A ngách 25, ngõ 629 Kim Mã, phường Ngọc Khánh, Ba Đình,
+                        Hà Nội
+                    </div>
+                    <div class="address-item">
+                        <strong>Cơ sở 2 – Hai Bà Trưng:</strong> Số 5, ngõ 128 phố Vọng, Hai Bà Trưng, Hà Nội
+                    </div>
+                    <div class="address-item">
+                        <strong>Cơ sở 3 – Hà Đông:</strong> Số 56, ngõ 54 Nguyễn Khuyến, Văn Quán, Hà Đông
+                    </div>
+                    <div class="address-item">
+                        <strong>Cơ sở 4 – Tây Sơn:</strong> Số 29 Tây Sơn, Đống Đa, Hà Nội
+                    </div>
+                    <div class="address-item">
+                        <strong>Cơ sở 5 – Nam Từ Liêm:</strong> 44 Nguyễn Hoàng, Nam Từ Liêm, Hà Nội
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2>CÔNG TY TNHH TƯ VẤN GIÁO DỤC VÀ<br>XÚC TIẾN THƯƠNG MAI English4All</h2>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i> 0377 602 075/ 0988 202 904
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i> infor@English4All.edu.vn
+                    </div>
+
+                    <h3>THỜI GIAN LÀM VIỆC</h3>
+                    <p>Sáng: 08:00 - 12:00 (Thứ Hai – thứ Bảy)</p>
+                    <p>Chiều: 13:30 - 17:30 (Thứ Hai – Thứ Bảy)</p>
+                    <p>Tối: 18:00 – 21:45 (Thứ Hai – Thứ Bảy)</p>
+                </div>
+
+                <div class="section">
+                    <h2 style="padding-left: 20px;">FANPAGE</h2>
+                    <div class="fanpage-item">
+                        <a href=""><img src="{% static 'app/images/photo/slider_home/slider1.jpg' %}" alt="photo.png"
+                                style="max-width: 30%; height: auto;"></a><br>
+                        <a href=""><img src="{% static 'app/images/photo/slider_home/slider1.jpg' %}" alt="photo2.png"
+                                style="max-width: 30%; height: auto;"></a>
+                        <style>
+                            .fanpage-item {
+                                height: auto;
+                                width: 100%;
+                                /* Adjust to 100% */
+                                text-align: center;
+                                /*Center fanpage in this section */
+                            }
+
+                            .fanpage-item img {
+                                display: block;
+                                /* Prevent images from floating next to each other */
+                                margin: 0 auto;
+                                margin-left: 15px;
+                            }
+                        </style>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+    <!-- Course Details Modal -->
     <div id="courseDetailsModal" class="modal">
         <div class="modal-content">
-            <span class="close">×</span>
             <h2 id="courseDetailsTitle"></h2>
             <div id="courseDetailsContent">
                 <!-- Nội dung chi tiết khóa học sẽ được thêm vào đây -->
             </div>
         </div>
     </div>
+    <script src="{% static 'app/js/home.js' %}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const slides = document.querySelectorAll('.slide');
+            let currentSlide = 0;
 
-    <script src="home.js"></script>
+            // Initially set all slides to be offscreen to the right.  This makes the "cover" animation work
+            slides.forEach((slide, index) => {
+                slide.style.left = '100%';
+                if (index === 0) {
+                    slide.classList.add('active');
+                    slide.style.left = '0'; // Make the initial slide visible.
+                } else {
+                    slide.classList.remove('active');
+                }
+            });
+
+            function showSlide(n) {
+                // Remove active class from current slide
+                slides[currentSlide].classList.remove('active');
+                slides[currentSlide].style.left = '-100%'; // Move current slide offscreen to the left
+
+                // Update current slide
+                currentSlide = n;
+
+                // Add active class to new slide
+                slides[currentSlide].classList.add('active');
+                slides[currentSlide].style.left = '0'; // Slide in from the right
+            }
+
+            function nextSlide() {
+                let next = (currentSlide + 1) % slides.length;
+                showSlide(next);
+            }
+
+            setInterval(nextSlide, 3000); // Change slide every 3 seconds
+        });
+    </script>
 </body>
 {% endblock content %}

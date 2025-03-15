@@ -17,8 +17,84 @@
             <p>Nhấn <a href="{%url 'flash_card' %}">tại đây</a> để học thêm các từ mới của hệ thống
             </p>
         </div>
-        <div class="hero-image">
-            <img src="{% static 'app/img/z.jpg' %}" alt="Người học tiếng Anh">
+        <div class="slider">
+            <div class="slide">
+                <img src="{% static 'app/images/photo/slider_home/slider1.jpg' %}" alt="Người học tiếng Anh 1">
+            </div>
+            <div class="slide">
+                <img src="{% static 'app/images/photo/slider_home/slider2.jpg' %}" alt="Người học tiếng Anh 2">
+            </div>
+            <div class="slide">
+                <img src="{% static 'app/images/photo/slider_home/slider3.jpg' %}" alt="Người học tiếng Anh 3">
+            </div>
+            <!-- Add more slides here -->
+            <style>
+                .slider {
+                    width: 500px;
+                    /* Adjust as needed */
+                    height: 300px;
+                    /* Adjust as needed */
+                    overflow: hidden;
+                    position: relative;
+                }
+
+                .slide {
+                    width: 100%;
+                    height: 100%;
+                    position: absolute;
+                    top: 0;
+                    left: 100%; /* Start off-screen to the right */
+                    transition: left 1s ease-in-out;
+                }
+
+                .slide img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    /* Maintain aspect ratio */
+                }
+
+                .slide.active {
+                    left: 0; /* Bring the active slide into view */
+                }
+            </style>
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    const slides = document.querySelectorAll('.slide');
+                    let currentSlide = 0;
+        
+                    // Initially set all slides to be offscreen to the right.  This makes the "cover" animation work
+                    slides.forEach((slide, index) => {
+                        slide.style.left = '100%';
+                        if (index === 0) {
+                            slide.classList.add('active');
+                            slide.style.left = '0'; // Make the initial slide visible.
+                        } else {
+                            slide.classList.remove('active');
+                        }
+                    });
+        
+                    function showSlide(n) {
+                        // Remove active class from current slide
+                        slides[currentSlide].classList.remove('active');
+                        slides[currentSlide].style.left = '-100%'; // Move current slide offscreen to the left
+        
+                        // Update current slide
+                        currentSlide = n;
+        
+                        // Add active class to new slide
+                        slides[currentSlide].classList.add('active');
+                        slides[currentSlide].style.left = '0'; // Slide in from the right
+                    }
+        
+                    function nextSlide() {
+                        let next = (currentSlide + 1) % slides.length;
+                        showSlide(next);
+                    }
+        
+                    setInterval(nextSlide, 3000); // Change slide every 3 seconds
+                });
+            </script>
         </div>
     </section>
     <div class="container">

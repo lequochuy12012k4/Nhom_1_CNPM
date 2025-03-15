@@ -9,81 +9,259 @@
             <p>Học tiếng Anh trực tuyến với các khóa học chất lượng cao, bài giảng thú vị và đội ngũ giáo viên tận tâm.
             </p>
         </div>
-        <div class="hero-image">
-            <img src="z.jpg" alt="Người học tiếng Anh">
+        <div class="slider">
+            <div class="slide">
+                <img src="{% static 'app/images/photo/slider_home/slider1.jpg' %}" alt="Người học tiếng Anh 1">
+            </div>
+            <div class="slide">
+                <img src="{% static 'app/images/photo/slider_home/slider2.jpg' %}" alt="Người học tiếng Anh 2">
+            </div>
+            <div class="slide">
+                <img src="{% static 'app/images/photo/slider_home/slider3.jpg' %}" alt="Người học tiếng Anh 3">
+            </div>
+            <!-- Add more slides here -->
+            <style>
+                .slider {
+                    width: 500px;
+                    /* Adjust as needed */
+                    height: 300px;
+                    /* Adjust as needed */
+                    overflow: hidden;
+                    position: relative;
+                }
+
+                .slide {
+                    width: 100%;
+                    height: 100%;
+                    position: absolute;
+                    top: 0;
+                    left: 100%; /* Start off-screen to the right */
+                    transition: left 1s ease-in-out;
+                }
+
+                .slide img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    /* Maintain aspect ratio */
+                }
+
+                .slide.active {
+                    left: 0; /* Bring the active slide into view */
+                }
+            </style>
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    const slides = document.querySelectorAll('.slide');
+                    let currentSlide = 0;
+        
+                    // Initially set all slides to be offscreen to the right.  This makes the "cover" animation work
+                    slides.forEach((slide, index) => {
+                        slide.style.left = '100%';
+                        if (index === 0) {
+                            slide.classList.add('active');
+                            slide.style.left = '0'; // Make the initial slide visible.
+                        } else {
+                            slide.classList.remove('active');
+                        }
+                    });
+        
+                    function showSlide(n) {
+                        // Remove active class from current slide
+                        slides[currentSlide].classList.remove('active');
+                        slides[currentSlide].style.left = '-100%'; // Move current slide offscreen to the left
+        
+                        // Update current slide
+                        currentSlide = n;
+        
+                        // Add active class to new slide
+                        slides[currentSlide].classList.add('active');
+                        slides[currentSlide].style.left = '0'; // Slide in from the right
+                    }
+        
+                    function nextSlide() {
+                        let next = (currentSlide + 1) % slides.length;
+                        showSlide(next);
+                    }
+        
+                    setInterval(nextSlide, 3000); // Change slide every 3 seconds
+                });
+            </script>
         </div>
     </section>
+    <section id="toeic-slider" class="courses">
+        <h2>Khóa học được lựa chọn nhiều</h2>
+        <div class="course-slider-container">
+            <div class="course-slider">
+                <!-- Individual slide for each TOEIC course -->
+                <div class="course-slide">
+                    <img src="{% static 'app/images/photo/slider_home/slider3.jpg' %}" alt="Khóa học A1">
+                    <h3>Khóa học Toeic 0-300+</h3>
+                    <h4>Cấp độ: Cơ bản</h4>
+                    <p>Khóa học giúp bạn đạt điểm cao trong thời gian ngắn.</p>
+                    <button class="btn view-course-details" data-course-id="toeic-1">Xem chi tiết</button>
+                </div>
 
+                <div class="course-slide">
+                    <img src="{% static 'app/images/photo/slider_home/slider3.jpg' %}" alt="Khóa học A1">
+                    <h3>Khóa học Toeic 450-600+</h3>
+                    <h4>Cấp độ: Trung bình</h4>
+                    <p>Khóa học cơ bản giúp bạn làm quen với tiếng Anh và xây dựng nền tảng vững chắc.</p>
+                    <button class="btn view-course-details" data-course-id="toeic-a1">Xem chi tiết</button>
+                </div>
+
+                <div class="course-slide">
+                    <img src="{% static 'app/images/photo/slider_home/slider3.jpg' %}" alt="Khóa học B1">
+                    <h3>Khóa học Toeic 730+</h3>
+                    <h4>Cấp độ: Nâng cao</h4>
+                    <p>Nâng cao khả năng giao tiếp tiếng Anh trong các tình huống hàng ngày.</p>
+                    <button class="btn view-course-details" data-course-id="toeic-b1">Xem chi tiết</button>
+                </div>
+
+                <div class="course-slide">
+                    <img src="{% static 'app/images/photo/slider_home/slider3.jpg' %}" alt="Khóa học B1">
+                    <h3>Khóa học IELTS 0.0-4.0</h3>
+                    <h4>Cấp độ: Nâng cao</h4>
+                    <p>Nâng cao khả năng giao tiếp tiếng Anh trong các tình huống hàng ngày.</p>
+                    <button class="btn view-course-details" data-course-id="toeic-b1">Xem chi tiết</button>
+                </div>
+
+                <div class="course-slide">
+                    <img src="{% static 'app/images/photo/slider_home/slider3.jpg' %}" alt="Khóa học B1">
+                    <h3>Khóa học IELTS 5.0-7.5</h3>
+                    <h4>Cấp độ: Nâng cao</h4>
+                    <p>Nâng cao khả năng giao tiếp tiếng Anh trong các tình huống hàng ngày.</p>
+                    <button class="btn view-course-details" data-course-id="toeic-b1">Xem chi tiết</button>
+                </div>
+                <!-- Add more slides as needed -->
+            </div>
+        </div>
+        <style>
+            .course-slider-container {
+            width: 80%;
+            margin: 20px auto;
+            overflow: hidden;
+        }
+
+        .course-slider {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .course-slide {
+            min-width: 100%;
+            /* Each slide takes full width */
+            padding: 20px;
+            box-sizing: border-box;
+            text-align: center;
+            font-size: 25px;
+        }
+
+        .course-slide img {
+            max-width: 100px;
+            height: auto;
+        }
+        </style>
+         <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const slider = document.querySelector('.course-slider');
+                const slides = document.querySelectorAll('.course-slide');
+                let currentIndex = 0;
+                const slideInterval = 3000; // Adjust slide interval as needed
+    
+                function nextSlide() {
+                    currentIndex = (currentIndex + 1) % slides.length;
+                    updateSliderPosition();
+                }
+    
+                function updateSliderPosition() {
+                    const translateValue = -currentIndex * 100 + '%';
+                    slider.style.transform = 'translateX(' + translateValue + ')';
+                }
+    
+                setInterval(nextSlide, slideInterval);
+            });
+        </script>
+    </section>
     <!-- Courses Section -->
     <section id="courses" class="courses">
         <h2>TOEIC</h2>
-        <div class="course-list">
+        <div class="giao_vien-list">
             <!-- Các khóa học sẽ được thêm vào đây (ví dụ) -->
-            <div class="course-item" id="course-a1"> <!-- Thêm ID cho khóa học -->
-                <img src="{% static 'app\images\icons\Google.png' %}" alt="Khóa học A1">
-                <h3>Khóa học A1 - Dành cho người mới bắt đầu</h3>
+            <div class="giao_vien-item" id="giao_vien-a1"> <!-- Thêm ID cho khóa học -->
+                <img src="{% static 'app/images/photo/slider_home/slider3.jpg' %}" alt="Khóa học A1">
+                <h3>Khóa học Toeic 0-300+</h3>
+                <h4>Cấp độ: Cơ bản</h4>
                 <p>Khóa học cơ bản giúp bạn làm quen với tiếng Anh và xây dựng nền tảng vững chắc.</p>
-                <button class="btn view-course-details" data-course-id="a1">Xem chi tiết</button>
+                <button class="btn view-course-details" data-course-id="TiengAnhGiaoTiep">Xem chi tiết</button>
+            </div>
+
+            <div class="giao_vien-item" id="giao_vien-a1"> <!-- Thêm ID cho khóa học -->
+                <img src="{% static 'app/images/photo/slider_home/slider3.jpg' %}" alt="Khóa học A1">
+                <h3>Khóa học Toeic 450-600+</h3>
+                <h4>Cấp độ: Trung bình</h4>
+                <p>Khóa học cơ bản giúp bạn làm quen với tiếng Anh và xây dựng nền tảng vững chắc.</p>
+                <button class="btn view-course-details" data-course-id="TiengAnhGiaoTiep">Xem chi tiết</button>
                 <!-- Thay 'a1' bằng ID khóa học thực tế -->
             </div>
 
-            <div class="course-item" id="course-a1"> <!-- Thêm ID cho khóa học -->
-                <img src="img/course1.jpg" alt="Khóa học A1">
-                <h3>Khóa học A1 - Dành cho người mới bắt đầu</h3>
+            <div class="giao_vien-item" id="giao_vien-a1"> <!-- Thêm ID cho khóa học -->
+                <img src="{% static 'app/images/photo/slider_home/slider3.jpg' %}" alt="Khóa học A1">
+                <h3>Khóa học Toeic 730+</h3>
+                <h4>Cấp độ: Nâng cao</h4>
                 <p>Khóa học cơ bản giúp bạn làm quen với tiếng Anh và xây dựng nền tảng vững chắc.</p>
-                <button class="btn view-course-details" data-course-id="a1">Xem chi tiết</button>
-                <!-- Thay 'a1' bằng ID khóa học thực tế -->
-            </div>
-
-            <div class="course-item" id="course-a1"> <!-- Thêm ID cho khóa học -->
-                <img src="img/course1.jpg" alt="Khóa học A1">
-                <h3>Khóa học A1 - Dành cho người mới bắt đầu</h3>
-                <p>Khóa học cơ bản giúp bạn làm quen với tiếng Anh và xây dựng nền tảng vững chắc.</p>
-                <button class="btn view-course-details" data-course-id="a1">Xem chi tiết</button>
+                <button class="btn view-course-details" data-course-id="TiengAnhGiaoTiep">Xem chi tiết</button>
                 <!-- Thay 'a1' bằng ID khóa học thực tế -->
             </div>
 
             <div class="course-item" id="course-b1"> <!-- Thêm ID cho khóa học -->
-                <img src="img/course2.jpg" alt="Khóa học B1">
-                <h3>Khóa học B1 - Tiếng Anh giao tiếp</h3>
+                <img src="{% static 'app/images/photo/slider_home/slider3.jpg' %}" alt="Khóa học B1">
+                <h3>Khóa học Toeic 0-300+</h3>
+                <h4>Cấp độ: Cơ bản</h4>
                 <p>Nâng cao khả năng giao tiếp tiếng Anh trong các tình huống hàng ngày.</p>
-                <button class="btn view-course-details" data-course-id="b1">Xem chi tiết</button>
+                <button class="btn view-course-details" data-course-id="TiengAnhGiaoTiep">Xem chi tiết</button>
                 <!-- Thay 'b1' bằng ID khóa học thực tế -->
             </div>
 
             <!-- Thêm các khóa học khác vào đây -->
         </div>
     </section>
-
     <section id="courses" class="courses">
         <h2>IELTS</h2>
         <div class="giao_vien-list">
             <!-- Các khóa học sẽ được thêm vào đây (ví dụ) -->
             <div class="giao_vien-item" id="giao_vien-a1"> <!-- Thêm ID cho khóa học -->
-                <img src="img/course1.jpg" alt="Khóa học A1">
-                <h3>Khóa học A1 - Dành cho người mới bắt đầu</h3>
+                <img src="{% static 'app/images/photo/slider_home/slider3.jpg' %}" alt="Khóa học A1">
+                <h3>Khóa học Toeic 0-300+</h3>
+                <h4>Cấp độ: Cơ bản</h4>
                 <p>Khóa học cơ bản giúp bạn làm quen với tiếng Anh và xây dựng nền tảng vững chắc.</p>
+                <button class="btn view-course-details" data-course-id="TiengAnhGiaoTiep">Xem chi tiết</button>
                 <!-- Thay 'a1' bằng ID khóa học thực tế -->
             </div>
 
             <div class="giao_vien-item" id="giao_vien-a1"> <!-- Thêm ID cho khóa học -->
-                <img src="img/course1.jpg" alt="Khóa học A1">
-                <h3>Khóa học A1 - Dành cho người mới bắt đầu</h3>
+                <img src="{% static 'app/images/photo/slider_home/slider3.jpg' %}" alt="Khóa học A1">
+                <h3>Khóa học Toeic 0-300+</h3>
+                <h4>Cấp độ: Cơ bản</h4>
                 <p>Khóa học cơ bản giúp bạn làm quen với tiếng Anh và xây dựng nền tảng vững chắc.</p>
+                <button class="btn view-course-details" data-course-id="TiengAnhGiaoTiep">Xem chi tiết</button>
                 <!-- Thay 'a1' bằng ID khóa học thực tế -->
             </div>
 
             <div class="giao_vien-item" id="giao_vien-a1"> <!-- Thêm ID cho khóa học -->
-                <img src="img/course1.jpg" alt="Khóa học A1">
-                <h3>Khóa học A1 - Dành cho người mới bắt đầu</h3>
+                <img src="{% static 'app/images/photo/slider_home/slider3.jpg' %}" alt="Khóa học A1">
+                <h3>Khóa học Toeic 0-300+</h3>
+                <h4>Cấp độ: Cơ bản</h4>
                 <p>Khóa học cơ bản giúp bạn làm quen với tiếng Anh và xây dựng nền tảng vững chắc.</p>
+                <button class="btn view-course-details" data-course-id="TiengAnhGiaoTiep">Xem chi tiết</button>
                 <!-- Thay 'a1' bằng ID khóa học thực tế -->
             </div>
 
             <div class="course-item" id="course-b1"> <!-- Thêm ID cho khóa học -->
-                <img src="img/course2.jpg" alt="Khóa học B1">
+                <img src="{% static 'app/images/photo/slider_home/slider3.jpg' %}" alt="Khóa học B1">
                 <h3>Khóa học B1 - Tiếng Anh giao tiếp</h3>
                 <p>Nâng cao khả năng giao tiếp tiếng Anh trong các tình huống hàng ngày.</p>
+                <button class="btn view-course-details" data-course-id="TiengAnhGiaoTiep">Xem chi tiết</button>
                 <!-- Thay 'b1' bằng ID khóa học thực tế -->
             </div>
 
@@ -95,29 +273,40 @@
     <section id="testimonials" class="testimonials">
         <h2>THPTQG</h2>
         <div class="testimonial-list">
-            <div class="testimonial-item">
-                <p>"Tôi đã cải thiện đáng kể khả năng tiếng Anh của mình nhờ các khóa học tại đây. Giáo viên rất nhiệt
-                    tình và bài giảng rất thú vị."</p>
-                <p>- Nguyễn Văn A</p>
-            </div>
-
             <div class="giao_vien-item" id="giao_vien-a1"> <!-- Thêm ID cho khóa học -->
-                <img src="img/course1.jpg" alt="Khóa học A1">
-                <h3>Khóa học A1 - Dành cho người mới bắt đầu</h3>
+                <img src="{% static 'app/images/photo/slider_home/slider3.jpg' %}" alt="Khóa học A1">
+                <h3>Khóa học Toeic 0-300+</h3>
+                <h4>Cấp độ: Cơ bản</h4>
                 <p>Khóa học cơ bản giúp bạn làm quen với tiếng Anh và xây dựng nền tảng vững chắc.</p>
+                <button class="btn view-course-details" data-course-id="TiengAnhGiaoTiep">Xem chi tiết</button>
                 <!-- Thay 'a1' bằng ID khóa học thực tế -->
             </div>
 
             <div class="giao_vien-item" id="giao_vien-a1"> <!-- Thêm ID cho khóa học -->
-                <img src="img/course1.jpg" alt="Khóa học A1">
-                <h3>Khóa học A1 - Dành cho người mới bắt đầu</h3>
+                <img src="{% static 'app/images/photo/slider_home/slider3.jpg' %}" alt="Khóa học A1">
+                <h3>Khóa học Toeic 0-300+</h3>
+                <h4>Cấp độ: Cơ bản</h4>
                 <p>Khóa học cơ bản giúp bạn làm quen với tiếng Anh và xây dựng nền tảng vững chắc.</p>
+                <button class="btn view-course-details" data-course-id="TiengAnhGiaoTiep">Xem chi tiết</button>
                 <!-- Thay 'a1' bằng ID khóa học thực tế -->
             </div>
 
-            <div class="testimonial-item">
-                <p>"Giao diện thân thiện, dễ sử dụng. Các bài tập tương tác giúp tôi học tiếng Anh hiệu quả hơn."</p>
-                <p>- Trần Thị B</p>
+            <div class="giao_vien-item" id="giao_vien-a1"> <!-- Thêm ID cho khóa học -->
+                <img src="{% static 'app/images/photo/slider_home/slider3.jpg' %}" alt="Khóa học A1">
+                <h3>Khóa học Toeic 0-300+</h3>
+                <h4>Cấp độ: Cơ bản</h4>
+                <p>Khóa học cơ bản giúp bạn làm quen với tiếng Anh và xây dựng nền tảng vững chắc.</p>
+                <button class="btn view-course-details" data-course-id="TiengAnhGiaoTiep">Xem chi tiết</button>
+                <!-- Thay 'a1' bằng ID khóa học thực tế -->
+            </div>
+
+            <div class="giao_vien-item" id="giao_vien-a1"> <!-- Thêm ID cho khóa học -->
+                <img src="{% static 'app/images/photo/slider_home/slider3.jpg' %}" alt="Khóa học A1">
+                <h3>Khóa học Toeic 0-300+</h3>
+                <h4>Cấp độ: Cơ bản</h4>
+                <p>Khóa học cơ bản giúp bạn làm quen với tiếng Anh và xây dựng nền tảng vững chắc.</p>
+                <button class="btn view-course-details" data-course-id="TiengAnhGiaoTiep">Xem chi tiết</button>
+                <!-- Thay 'a1' bằng ID khóa học thực tế -->
             </div>
 
             <!-- Thêm các lời chứng thực khác vào đây -->
@@ -126,41 +315,42 @@
 
     <!-- Contact Section -->
     <section class="university-logos">
-        <div class="container">
+        <div class="">
             <h2>English4All tự hào khi là lựa chọn của +30.000 sinh viên<br>tại nhiều trường Đại học, Cao đẳng</h2>
             <div class="logo-grid">
-                <img src="{% static 'app/images/university_logos/logo1.png' %}" alt="Logo 1">
-                <img src="{% static 'app/images/university_logos/logo2.png' %}" alt="Logo 2">
-                <img src="{% static 'app/images/university_logos/logo3.png' %}" alt="Logo 3">
-                <img src="{% static 'app/images/university_logos/logo4.png' %}" alt="Logo 4">
-                <img src="{% static 'app/images/university_logos/logo5.png' %}" alt="Logo 5">
-                <img src="{% static 'app/images/university_logos/logo6.png' %}" alt="Logo 6">
-                <img src="{% static 'app/images/university_logos/logo7.png' %}" alt="Logo 7">
-                <img src="{% static 'app/images/university_logos/logo8.png' %}" alt="Logo 8">
-                <img src="{% static 'app/images/university_logos/logo9.png' %}" alt="Logo 9">
-                <img src="{% static 'app/images/university_logos/logo10.png' %}" alt="Logo 10">
-                <img src="{% static 'app/images/university_logos/logo11.png' %}" alt="Logo 11">
-                <img src="{% static 'app/images/university_logos/logo12.png' %}" alt="Logo 12">
-                <img src="{% static 'app/images/university_logos/logo13.png' %}" alt="Logo 13">
-                <img src="{% static 'app/images/university_logos/logo14.png' %}" alt="Logo 14">
-                <img src="{% static 'app/images/university_logos/logo15.png' %}" alt="Logo 15">
-                <img src="{% static 'app/images/university_logos/logo16.png' %}" alt="Logo 16">
-                <img src="{% static 'app/images/university_logos/logo17.png' %}" alt="Logo 17">
-                <img src="{% static 'app/images/university_logos/logo18.png' %}" alt="Logo 18">
-                <img src="{% static 'app/images/university_logos/logo19.png' %}" alt="Logo 19">
-                <img src="{% static 'app/images/university_logos/logo20.png' %}" alt="Logo 20">
-                <img src="{% static 'app/images/university_logos/logo21.png' %}" alt="Logo 21">
-                <img src="{% static 'app/images/university_logos/logo22.png' %}" alt="Logo 22">
-                <img src="{% static 'app/images/university_logos/logo23.png' %}" alt="Logo 23">
-                <img src="{% static 'app/images/university_logos/logo24.png' %}" alt="Logo 24">
-                <img src="{% static 'app/images/university_logos/logo25.png' %}" alt="Logo 25">
-                <img src="{% static 'app/images/university_logos/logo26.png' %}" alt="Logo 26">
-                <img src="{% static 'app/images/university_logos/logo27.png' %}" alt="Logo 27">
-                <img src="{% static 'app/images/university_logos/logo28.png' %}" alt="Logo 28">
-                <img src="{% static 'app/images/university_logos/logo29.png' %}" alt="Logo 29">
-                <img src="{% static 'app/images/university_logos/logo30.png' %}" alt="Logo 30">
-                <img src="{% static 'app/images/university_logos/logo31.png' %}" alt="Logo 31">
-                <img src="{% static 'app/images/university_logos/logo32.png' %}" alt="Logo 32">
+                <img src="{% static 'app/images/university_logos/PTIT.jpg' %}" alt="Logo 1">
+                <img src="{% static 'app/images/university_logos/PTIT.jpg' %}" alt="Logo 2">
+                <img src="{% static 'app/images/university_logos/PTIT.jpg' %}" alt="Logo 3">
+                <img src="{% static 'app/images/university_logos/PTIT.jpg' %}" alt="Logo 4">
+                <img src="{% static 'app/images/university_logos/PTIT.jpg' %}" alt="Logo 5">
+                <img src="{% static 'app/images/university_logos/PTIT.jpg' %}" alt="Logo 6">
+                <img src="{% static 'app/images/university_logos/PTIT.jpg' %}" alt="Logo 7">
+                <img src="{% static 'app/images/university_logos/PTIT.jpg' %}" alt="Logo 8">
+                <img src="{% static 'app/images/university_logos/PTIT.jpg' %}" alt="Logo 9">
+                <img src="{% static 'app/images/university_logos/PTIT.jpg' %}" alt="Logo 10">
+                <img src="{% static 'app/images/university_logos/PTIT.jpg' %}" alt="Logo 11">
+                <img src="{% static 'app/images/university_logos/PTIT.jpg' %}" alt="Logo 12">
+                <img src="{% static 'app/images/university_logos/PTIT.jpg' %}" alt="Logo 13">
+                <img src="{% static 'app/images/university_logos/PTIT.jpg' %}" alt="Logo 14">
+                <img src="{% static 'app/images/university_logos/PTIT.jpg' %}" alt="Logo 15">
+                <img src="{% static 'app/images/university_logos/PTIT.jpg' %}" alt="Logo 16">
+                <img src="{% static 'app/images/university_logos/PTIT.jpg' %}" alt="Logo 17">
+                <img src="{% static 'app/images/university_logos/PTIT.jpg' %}" alt="Logo 18">
+                <img src="{% static 'app/images/university_logos/PTIT.jpg' %}" alt="Logo 19">
+                <img src="{% static 'app/images/university_logos/PTIT.jpg' %}" alt="Logo 20">
+                <img src="{% static 'app/images/university_logos/PTIT.jpg' %}" alt="Logo 21">
+                <img src="{% static 'app/images/university_logos/PTIT.jpg' %}" alt="Logo 22">
+                <img src="{% static 'app/images/university_logos/PTIT.jpg' %}" alt="Logo 23">
+                <img src="{% static 'app/images/university_logos/PTIT.jpg' %}" alt="Logo 24">
+                <img src="{% static 'app/images/university_logos/PTIT.jpg' %}" alt="Logo 25">
+                <img src="{% static 'app/images/university_logos/PTIT.jpg' %}" alt="Logo 26">
+                <img src="{% static 'app/images/university_logos/PTIT.jpg' %}" alt="Logo 27">
+                <img src="{% static 'app/images/university_logos/PTIT.jpg' %}" alt="Logo 28">
+                <img src="{% static 'app/images/university_logos/PTIT.jpg' %}" alt="Logo 29">
+                <img src="{% static 'app/images/university_logos/PTIT.jpg' %}" alt="Logo 30">
+                <img src="{% static 'app/images/university_logos/PTIT.jpg' %}" alt="Logo 31">
+                <img src="{% static 'app/images/university_logos/PTIT.jpg' %}" alt="Logo 32">
+
                 <!-- Add the rest of your logos here -->
             </div>
         </div>
@@ -182,11 +372,11 @@
 
         .logo-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-            /* Responsive grid */
-            gap: 20px;
+            grid-template-columns: repeat(8, 0fr);
+            /* Hiển thị 8 logos trên một hàng */
             justify-items: center;
-            /* Center items horizontally */
+            padding-left: 500px;
+            margin-bottom: 30px;
         }
 
         .logo-grid img {
@@ -202,8 +392,57 @@
             transform: scale(1.1);
             /* Slight zoom on hover */
         }
+
+        /* Basic Slider Styles */
+        .slider {
+            width: 500px;
+            /* Adjust as needed */
+            height: 300px;
+            /* Adjust as needed */
+            overflow: hidden;
+            position: relative;
+        }
+
+        .slide {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 100%;
+            /* Start off-screen to the right */
+            transition: left 1s ease-in-out;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* Maintain aspect ratio */
+        }
+
+        .slide.active {
+            left: 0;
+            /* Bring the active slide into view */
+        }
     </style>
     <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <h2>Thông tin đăng ký</h2>
+        <form>
+            <input type="text" placeholder="Họ và tên">
+            <input type="email" placeholder="Email của bạn">
+            <input type="text" placeholder="Số điện thoại">
+            <input type="text" placeholder="Trường học">
+            <input list="loai_chung_chi" placeholder="Loại chứng chỉ">
+            <datalist id="loai_chung_chi">
+                <option value="TOEIC"></option>
+                <option value="IELTS"></option>
+                <option value="APTIS"></option>
+            </datalist>
+            <input type="number" placeholder="Mục tiêu">
+            <button type="submit" class="btn">Đăng ký ngay</button>
+        </form>
+    </section>
     <section class="faq">
         <h2>Câu hỏi thường gặp về lộ trình học</h2>
         <div class="faq-list">
@@ -447,10 +686,6 @@
                 margin-bottom: 10px;
             }
 
-            .fanpage-item {
-                margin-bottom: 10px;
-            }
-
             .map-link {
                 display: block;
                 padding: 10px 20px;
@@ -502,13 +737,31 @@
                 </div>
 
                 <div class="section">
-                    <h2>FANPAGE</h2>
+                    <h2 style="padding-left: 20px;">FANPAGE</h2>
                     <div class="fanpage-item">
-                        <img src="" alt="photo.png">
-                    </div>
-                    <img src="" alt="photo2.png">
-                </div>
+                        <a href=""><img src="{% static 'app/images/photo/slider_home/slider1.jpg' %}" alt="photo.png"
+                                style="max-width: 30%; height: auto;"></a><br>
+                        <a href=""><img src="{% static 'app/images/photo/slider_home/slider1.jpg' %}" alt="photo2.png"
+                                style="max-width: 30%; height: auto;"></a>
+                        <style>
+                            .fanpage-item {
+                                height: auto;
+                                width: 100%;
+                                /* Adjust to 100% */
+                                text-align: center;
+                                /*Center fanpage in this section */
+                            }
 
+                            .fanpage-item img {
+                                display: block;
+                                /* Prevent images from floating next to each other */
+                                margin: 0 auto;
+                                margin-left: 15px;
+                            }
+                        </style>
+                    </div>
+                </div>
+            </div>
     </section>
 
     <!-- Course Details Modal -->
@@ -520,6 +773,43 @@
             </div>
         </div>
     </div>
-    <script src="{% static 'app\js\home.js' %}"></script>
+    <script src="{% static 'app/js/home.js' %}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const slides = document.querySelectorAll('.slide');
+            let currentSlide = 0;
+
+            // Initially set all slides to be offscreen to the right.  This makes the "cover" animation work
+            slides.forEach((slide, index) => {
+                slide.style.left = '100%';
+                if (index === 0) {
+                    slide.classList.add('active');
+                    slide.style.left = '0'; // Make the initial slide visible.
+                } else {
+                    slide.classList.remove('active');
+                }
+            });
+
+            function showSlide(n) {
+                // Remove active class from current slide
+                slides[currentSlide].classList.remove('active');
+                slides[currentSlide].style.left = '-100%'; // Move current slide offscreen to the left
+
+                // Update current slide
+                currentSlide = n;
+
+                // Add active class to new slide
+                slides[currentSlide].classList.add('active');
+                slides[currentSlide].style.left = '0'; // Slide in from the right
+            }
+
+            function nextSlide() {
+                let next = (currentSlide + 1) % slides.length;
+                showSlide(next);
+            }
+
+            setInterval(nextSlide, 3000); // Change slide every 3 seconds
+        });
+    </script>
 </body>
 {% endblock content %}
