@@ -169,3 +169,27 @@ LOGIN_REDIRECT_URL = ""
 LOGOUT_REDIRECT_URL = "/"
 SOCIALACCOUNT_AUTO_SIGNUP = True
 SOCIALACCOUNT_LOGIN_ON_GET = True
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
+
+# ... other settings ...
+
+# Google API Key
+GOOGLE_API_KEY = os.getenv('GOOGLE_API_KEY')
+
+# Add logging configuration
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'root': {
+        'handlers': ['console'],
+        'level': 'INFO',
+    },
+}

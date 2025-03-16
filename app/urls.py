@@ -22,4 +22,5 @@ urlpatterns = [
     path('user/thay_doi_mat_khau/', views.Thay_doi_mat_khauPage, name="thay_doi_mat_khau"),
     path('flash_card/',views.Flash_CardPage, name="flash_card"),
     path('tu_hoc_flash_card/',views.FlashCardTuhocPage, name="flash_card_tu_hoc"),
+    path('chatbot/response/', views.chatbot_response, name='chatbot_response'),
 ]

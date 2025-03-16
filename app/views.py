@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, PasswordChangeForm
 from django.contrib.auth.models import *
 from .models import *
@@ -8,6 +8,13 @@ from django.contrib.auth import login,logout,authenticate
 from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
 from django.http import HttpResponse
+from django.views.decorators.csrf import csrf_exempt
+import google.generativeai as genai
+from django.conf import settings
+import json
+import logging
+
+logger = logging.getLogger(__name__)
 
 def home(request):
     if request.user.is_authenticated:
@@ -300,3 +307,62 @@ def Vinh_danh(request):
         value = file.readline().strip()
     context = {'user_not_login':user_not_login,'user_login':user_login, 'data_ranking': data_rankings}
     return render(request,'app/vinh_danh.html', context)
+
+# Add this function to test the API key
+def test_api_key():
+    try:
+        genai.configure(api_key=settings.GOOGLE_API_KEY)
+        model = genai.GenerativeModel('gemini-2.0-flash')
+        response = model.generate_content("Hello")
+        return True, response.text
+    except Exception as e:
+        return False, str(e)
+
+@csrf_exempt
+def chatbot_response(request):
+    if request.method == 'POST':
+        # Test API key first
+        is_working, test_response = test_api_key()
+        if not is_working:
+            return JsonResponse({'error': f'API Key error: {test_response}'}, status=500)
+            
+        try:
+            # Debug print to check if API key is loaded
+            logger.info(f"API Key present: {bool(settings.GOOGLE_API_KEY)}")
+            
+            message = request.POST.get('message', '')
+            logger.info(f"Received message: {message}")
+            
+            # Configure Google API
+            genai.configure(api_key=settings.GOOGLE_API_KEY)
+            
+            # Debug print for configuration
+            logger.info("Google API configured")
+            
+            model = genai.GenerativeModel('gemini-2.0-flash')
+            logger.info("Model created")
+            
+            # Create context for the chatbot
+            context = """You are Trợ giảng English4All, an AI teaching assistant for an English learning platform. 
+            You help students with:
+            - English courses (TOEIC, IELTS, THPTQG)
+            - Course information and pricing
+            - Study materials and resources
+            - Online tests and assessments
+            - Learning paths and roadmaps
+            
+            Please respond in Vietnamese unless specifically asked in English.
+            Keep responses concise and friendly."""
+            
+            # Generate response
+            prompt = f"{context}\n\nUser: {message}\nTrợ giảng English4All:"
+            logger.info("Generating response...")
+            response = model.generate_content(prompt)
+            logger.info("Response generated")
+            
+            return JsonResponse({'response': response.text})
+            
+        except Exception as e:
+            logger.error(f"Error in chatbot_response: {str(e)}", exc_info=True)
+            return JsonResponse({'error': str(e)}, status=500)
+    return JsonResponse({'error': 'Invalid request method'}, status=400)
