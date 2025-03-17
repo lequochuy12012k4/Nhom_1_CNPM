@@ -1,17 +1,14 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse, JsonResponse
-from django.contrib.auth.forms import UserCreationForm, UserChangeForm, PasswordChangeForm
+from django.http import JsonResponse
 from django.contrib.auth.models import *
 from .models import *
 from django.contrib.auth.models import User
 from django.contrib.auth import login,logout,authenticate
 from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
-from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 import google.generativeai as genai
 from django.conf import settings
-import json
 import logging
 
 logger = logging.getLogger(__name__)
@@ -142,8 +139,8 @@ def Flash_CardPage(request):
     else:
         user_not_login = "show"
         user_login = "hidden"
-
-    file = open(os.path.join(settings.BASE_DIR, 'app\\static\\app\\data\\Book2.csv'),encoding='utf-8-sig')
+    file_name = 'Book2.csv'
+    file = open(os.path.join(settings.BASE_DIR, f'app\\static\\app\\data\\{file_name}'),encoding='utf-8-sig')
     key = file.readline().strip()
     keys = key.split(",")
 
@@ -360,6 +357,8 @@ def chatbot_response(request):
             response = model.generate_content(prompt)
             logger.info("Response generated")
             
+            new_chat = Chatbot_message(message = message, response = response)
+            new_chat.save()
             return JsonResponse({'response': response.text})
             
         except Exception as e:

@@ -106,3 +106,11 @@ class ChangePassword(PasswordChangeForm):
             'placeholder':'Tên đăng nhập',
         }),
 }
+
+class Chatbot_message(models.Model):
+    message = models.CharField(max_length=100000)
+    response = models.CharField(max_length=100000)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.message

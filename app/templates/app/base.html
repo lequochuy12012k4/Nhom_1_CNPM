@@ -71,7 +71,7 @@
         {% endblock content %}
         <div id="chatbot-container">
             <div id="chatbot-header">
-                <img src="{% static 'app/images/icons/bot.jpg' %}" alt="Chatbot Profile">
+                <img src="{% static 'app/images/gif/bot.gif' %}" alt="Chatbot" style="max-height: 400px; max-width: 400px;">
                 <div id="chatbot-header-info">
                     <div id="chatbot-name">Trợ lý English4All</div>
                     <div id="chatbot-description">Hỗ trợ, học tập</div>
@@ -95,8 +95,10 @@
         </div>
 
         <button id="chatbot-icon">
-            <img src="{% static 'app/images/icons/bot.jpg' %}" alt="Chatbot">
+            <img src="{% static 'app/images/gif/bot.gif' %}" alt="Chatbot" style="max-height: 90px; max-width: 90px;">
         </button>
+        <div id="chatbot-preview-question">
+        </div>
     </body>
     <footer>
         <p>© 2025 English4All. All rights reserved.</p>
@@ -339,6 +341,87 @@
             animation: none;
             /* Stop animation on hover */
         }
+
+        #chatbot-preview-question {
+            position: fixed;
+            bottom: 80px;
+            right: 80px;
+            background-color: #334155;
+            color: #CBD5E0;
+            border-radius: 10px;
+            padding: 10px;
+            max-width: 200px;
+            font-size: 0.9em;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            z-index: 998;
+            opacity: 1;
+            transition: opacity 0.3s ease;
+        }
+
+        #chatbot-preview-question.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        #chatbot-preview-question {
+            /* ... các kiểu dáng khác ... */
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+
+        #chatbot-preview-question.fade-in {
+            opacity: 1;
+        }
+
+        #chatbot-preview-question.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .bot-message,
+        .user-message {
+            /* ... các kiểu dáng khác ... */
+            opacity: 1;
+            transition: opacity 1s ease;
+        }
+
+        .bot-message.fade-in,
+        .user-message.fade-in {
+            opacity: 1;
+        }
+        .typing-indicator {
+        display: flex;
+        align-items: center;
+    }
+
+    .typing-indicator span {
+        width: 8px;
+        height: 8px;
+        background-color: #CBD5E0;
+        border-radius: 50%;
+        margin: 0 4px;
+        animation: typing 1.4s infinite ease-in-out;
+    }
+
+    .typing-indicator span:nth-child(2) {
+        animation-delay: 0.2s;
+    }
+
+    .typing-indicator span:nth-child(3) {
+        animation-delay: 0.4s;
+    }
+
+    @keyframes typing {
+        0% {
+            transform: translateY(0);
+        }
+        28% {
+            transform: translateY(-5px);
+        }
+        44% {
+            transform: translateY(0);
+        }
+    }
     </style>
     <script>
         const chatbotIcon = document.getElementById('chatbot-icon');
@@ -347,33 +430,33 @@
         const userInput = document.getElementById('user-input');
         const sendButton = document.getElementById('send-button');
         const closeButton = document.getElementById('close-button');
-
+    
         // Load conversation history from localStorage on page load
         window.addEventListener('load', () => {
             chatbotIcon.classList.add('zoom');
         });
-
+    
         chatbotIcon.addEventListener('click', () => {
             chatbotContainer.classList.add('active');
             chatbotIcon.classList.remove('zoom');
-
+    
             if (!chatbotMessages.hasChildNodes()) {
                 addBotMessage("Xin chào! Mình là Trợ giảng cánh cụt. Mình có thể giúp gì cho bạn?");
             }
             userInput.focus();
         });
-
+    
         closeButton.addEventListener('click', () => {
             chatbotContainer.classList.remove('active');
             chatbotIcon.classList.add('zoom');
         });
-
+    
         // Handle send button click
         sendButton.addEventListener('click', (e) => {
             e.preventDefault();
             sendMessage();
         });
-
+    
         // Handle enter key
         userInput.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') {
@@ -381,13 +464,16 @@
                 sendMessage();
             }
         });
-
+    
         function sendMessage() {
             const message = userInput.value.trim();
             if (message) {
                 addUserMessage(message);
                 userInput.value = '';
-
+    
+                // Thêm animation "typing"
+                addTypingIndicator();
+    
                 fetch('/chatbot/response/', {
                     method: 'POST',
                     headers: {
@@ -397,22 +483,28 @@
                         'message': message
                     })
                 })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.response) {
-                        addBotMessage(data.response);
-                    } else if (data.error) {
-                        console.error('Server error:', data.error);  // Log the actual error
-                        addBotMessage("Xin lỗi, đã có lỗi xảy ra: " + data.error);
-                    }
-                })
-                .catch(error => {
-                    console.error('Network error:', error);
-                    addBotMessage("Xin lỗi, đã có lỗi kết nối. Vui lòng thử lại sau.");
-                });
+                    .then(response => response.json())
+                    .then(data => {
+                        // Xóa animation "typing"
+                        removeTypingIndicator();
+    
+                        if (data.response) {
+                            addBotMessage(data.response);
+                        } else if (data.error) {
+                            console.error('Server error:', data.error);
+                            addBotMessage("Xin lỗi, đã có lỗi xảy ra: " + data.error);
+                        }
+                    })
+                    .catch(error => {
+                        // Xóa animation "typing" khi có lỗi kết nối
+                        removeTypingIndicator();
+    
+                        console.error('Network error:', error);
+                        addBotMessage("Xin lỗi, đã có lỗi kết nối. Vui lòng thử lại sau.");
+                    });
             }
         }
-
+    
         function addUserMessage(message) {
             const messageDiv = document.createElement('div');
             messageDiv.classList.add('user-message');
@@ -420,17 +512,94 @@
             chatbotMessages.appendChild(messageDiv);
             scrollToBottom();
         }
-
+    
         function addBotMessage(message) {
             const messageDiv = document.createElement('div');
             messageDiv.classList.add('bot-message');
             messageDiv.textContent = message;
             chatbotMessages.appendChild(messageDiv);
             scrollToBottom();
+            requestAnimationFrame(() => {
+                setTimeout(() => {
+                    messageDiv.classList.remove('fade-in');
+                }, 7000);
+            });
         }
-
+    
         function scrollToBottom() {
             chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
         }
+    
+        const chatbotPreviewQuestion = document.getElementById('chatbot-preview-question');
+        const questions = [
+            "Hôm nay bạn muốn học gì?",
+            "Bạn có câu hỏi nào không?",
+            "Bạn đã làm bài tập hôm nay chưa?",
+            "Bạn có người yêu chưa :))",
+            "Nếu bạn chưa có người yêu thì lêu lêu đồ FA :))",
+            "Cơm nước gì chưa người đẹp",
+            "Ngại học quá! Làm ván game cho đỡ chán",
+            "3h anh còn chưa ngủ, học hết từ vựng biết bao nhiêu là cho đủ",
+            "Bạn có cần giúp đỡ không?",
+            "Bạn thích học TOEIC hay IELTS",
+            "What the f*k are you doing?"
+        ];
+        let currentQuestionIndex = 0;
+    
+        function showNextQuestion() {
+            if (currentQuestionIndex < questions.length) {
+                chatbotPreviewQuestion.textContent = questions[currentQuestionIndex];
+                currentQuestionIndex++;
+                setTimeout(showNextQuestion, 5000);
+            }
+        }
+    
+        // Bắt đầu hiển thị câu hỏi khi trang tải
+        window.addEventListener('load', () => {
+            showNextQuestion();
+        });
+    
+        chatbotIcon.addEventListener('click', () => {
+            chatbotContainer.classList.add('active');
+            chatbotIcon.classList.remove('zoom');
+            chatbotPreviewQuestion.classList.add('hidden');
+        });
+    
+        closeButton.addEventListener('click', () => {
+            chatbotContainer.classList.remove('active');
+            chatbotIcon.classList.add('zoom');
+            chatbotPreviewQuestion.classList.remove('hidden');
+        });
+    
+        function showRandomQuestion() {
+            const randomIndex = Math.floor(Math.random() * questions.length);
+            chatbotPreviewQuestion.textContent = questions[randomIndex];
+            chatbotPreviewQuestion.classList.add('fade-in');
+            setTimeout(() => {
+                chatbotPreviewQuestion.classList.remove('fade-in');
+            }, 3000);
+            setTimeout(showRandomQuestion, 5000);
+        }
+    
+        // Bắt đầu hiển thị câu hỏi ngẫu nhiên khi trang tải
+        window.addEventListener('load', () => {
+            showRandomQuestion();
+        });
+    
+        // Thêm animation "typing"
+        function addTypingIndicator() {
+            const typingDiv = document.createElement('div');
+            typingDiv.classList.add('bot-message', 'typing-indicator');
+            typingDiv.innerHTML = '<span>.</span><span>.</span><span>.</span>';
+            chatbotMessages.appendChild(typingDiv);
+            scrollToBottom();
+        }
+    
+        // Xóa animation "typing"
+        function removeTypingIndicator() {
+            const typingIndicator = document.querySelector('.typing-indicator');
+            if (typingIndicator) {
+                typingIndicator.remove();
+            }
+        }
     </script>
-</body>
