@@ -20,17 +20,7 @@
 - 📄 Know about my experiences: **No experience 💩**
 
 - 🤡 Joke of my team: **The opponent's mistake is the opportunity for us**
-<button id="playButton">Play Audio</button>
-<audio autoplay id="myAudio" src="Yêu5.mp3" type="audio/mpeg"></audio>
 
-<script>
-const playButton = document.getElementById('playButton');
-const myAudio = document.getElementById('myAudio');
-
-playButton.addEventListener('click', function() {
-  myAudio.play();
-});
-</script>
 <h1 align="Center">Nice to meet you 😘 and Follow my project ❤️</h1>
 <p align="left">
 </p>
