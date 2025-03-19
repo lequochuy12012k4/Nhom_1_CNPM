@@ -100,7 +100,7 @@ def LoginPage(request):
                 messages.info(request,"Tên đăng nhập hoặc mật khẩu chưa chính xác")
     return render(request, 'app/login.html', context)
 
-def logoutPage(request):
+def LogoutPage(request):
     logout(request)
     response = redirect('home')
     return response
@@ -139,7 +139,7 @@ def Flash_CardPage(request):
     else:
         user_not_login = "show"
         user_login = "hidden"
-    file_name = 'Book2.csv'
+    file_name = 'vocalbulary.csv'
     file = open(os.path.join(settings.BASE_DIR, f'app\\static\\app\\data\\{file_name}'),encoding='utf-8-sig')
     key = file.readline().strip()
     keys = key.split(",")
@@ -178,6 +178,7 @@ def Flash_CardPage(request):
     return render(request,'app/flash_card.html',context)
 
 def FlashCardTuhocPage(request):
+
     if request.user.is_authenticated:
         user_not_login = "hidden"
         user_login = "show"
@@ -251,7 +252,51 @@ def Test_onlinePage(request):
     return render(request,'app/test_online.html',context)
 
 #Link to "Username"
+import matplotlib.pyplot as plt
+from io import BytesIO
+import base64
+import numpy as np
 def Thong_tin(request):
+    #Thống kê số điểm
+    # 1. Data Preparation
+    x_labels = ["0-300+", "450-600+", "730+"]
+    x = np.array([1, 2, 3])  # Numerical values for X-axis positions
+    y = np.array([250, 600, 750]) # Corresponding numerical values for each x
+
+    # 2. Create the Plot (Epic Styling!)
+    plt.figure(figsize=(12, 8), facecolor="#222222")
+    ax = plt.axes()
+    ax.set_facecolor("#333333")
+    ax.spines['top'].set_visible(False)
+    ax.spines['right'].set_visible(False)
+    ax.spines['bottom'].set_color('white')
+    ax.spines['left'].set_color('white')
+    ax.tick_params(axis='x', colors='white')
+    ax.tick_params(axis='y', colors='white')
+
+    plt.plot(x, y, color="#00FFFF", linewidth=2, marker='o', markersize=8)  # Plot the data
+    plt.xlabel("Khóa học TOEIC", color="white", fontsize=14)
+    plt.ylabel("Thang điểm TOEIC", color="white", fontsize=14)
+    plt.title("Đồ thị điểm TOEIC", color="white", fontsize=18)
+    plt.legend(["Điểm TOEIC"], facecolor="#333333", edgecolor="white", labelcolor="white")  # Style legend
+    plt.grid(True, color="#555555", linestyle='--')
+
+    # Set Y-axis limits
+    plt.ylim(0, 990)
+    plt.yticks(np.arange(0, 1000, 100), color="white")  # Y-axis ticks every 100
+
+    # Set X-axis ticks and labels
+    plt.xticks(x, x_labels, color="white") # position x_labels to the x axis
+
+    # 3. Convert to Image (Base64)
+    buffer = BytesIO()
+    plt.savefig(buffer, format='png', facecolor=plt.gcf().get_facecolor())
+    buffer.seek(0)
+    image_png = buffer.getvalue()
+    buffer.close()
+    graphic = base64.b64encode(image_png).decode('utf-8')
+
+ # Encode to base64 for embedding in HTML
     if request.user.is_authenticated:
         user_not_login = "hidden"
         user_login = "show"
@@ -260,7 +305,8 @@ def Thong_tin(request):
         user_login = "hidden"
     context = {
         'user_not_login':user_not_login,
-        'user_login':user_login
+        'user_login':user_login,
+        'graphic': graphic
     }
     return render(request,'app/user/thong_tin.html',context)
 
@@ -283,8 +329,8 @@ def Vinh_danh(request):
     else:
         user_not_login = "show"
         user_login = "hidden"
-
-    file = open(os.path.join(settings.BASE_DIR, 'app\\static\\app\\data\\Book1.csv'),encoding='utf-8-sig')
+    file_name = "vinhdanh.csv"
+    file = open(os.path.join(settings.BASE_DIR, f'app\\static\\app\\data\\{file_name}'),encoding='utf-8-sig')
     key = file.readline().strip()
     keys = key.split(",")
 

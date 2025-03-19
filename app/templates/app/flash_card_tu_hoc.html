@@ -98,9 +98,9 @@
         </div>
     </section>
     <div class="container">
+        {% if user.is_authenticated %}
         <div class="title">Flash Cards Tiếng Anh (<span id="current-index">1</span>/<span id="total-cards">27</span>)
         </div>
-
         <div class="card-container">
             <div class="card-inner" id="card-inner">
                 <div class="card-front">
@@ -134,6 +134,16 @@
             </div>
             <div class="progress-text" id="progress-text">0/{{ data_word|length }} từ đã học (0%)</div>
         </div>
+        {% else %}
+        <div class="title">Flash Cards Tiếng Anh</div>
+        <div class="card-container">
+            <div class="card-inner" id="card-inner">
+                <div class="card-front">
+                    <div class="card-word" id="card-word">Hãy <a href="{%url 'login' %}">đăng nhập</a> để tự thêm tử mới của bạn vào FlashCard</div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
     </div>
     <style>
         .hero {
@@ -356,7 +366,7 @@
         const initialCards = [
             { id: 1, 
                 word: 'Nhấn vào "Nhập từ Excel" để chọn file excel của bạn', 
-                meaning: 'Press the button "Nhập từ Excel" to choose your file', 
+                meaning: 'Nội dung file cần có 3 cột theo thứ tự: từ vựng,nghĩa,ví dụ', 
                 example: '' 
             },
         ];
