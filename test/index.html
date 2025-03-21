@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tạo mã QR VietQR</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Tạo mã QR VietQR</h1>
+        <form id="qr-form">
+            <div class="form-group">
+                <label for="accountName">Tên người dùng:</label>
+                <input type="text" id="accountName" name="accountName" required>
+            </div>
+            <div class="form-group">
+                <label for="bank">Chọn ngân hàng:</label>
+                <select id="bank" name="bank" required>
+                    <option value="">-- Chọn ngân hàng --</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="accountNumber">Số tài khoản:</label>
+                <input type="text" id="accountNumber" name="accountNumber" required>
+            </div>
+            <div class="form-group">
+                <label for="amount">Số tiền:</label>
+                <input type="number" id="amount" name="amount" required>
+            </div>
+            <div class="form-group">
+                <label for="description">Nội dung chuyển khoản:</label>
+                <input type="text" id="description" name="description" required>
+            </div>
+            <button type="button" id="generateQR">Tạo mã QR</button>
+        </form>
+        <div id="qr-code-container" style="display: none;">
+            <h2>Mã QR của bạn:</h2>
+            <div id="qr-code"></div>
+            <div id="bank-info">
+                <p><strong>Ngân hàng:</strong> <span id="bank-name"></span></p>
+                <p><strong>Số tài khoản:</strong> <span id="account-number"></span></p>
+                <p><strong>Nội dung:</strong> <span id="transfer-content"></span></p>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>

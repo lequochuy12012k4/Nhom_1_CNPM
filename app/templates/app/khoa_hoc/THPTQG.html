@@ -177,8 +177,20 @@
                 <h3>Khóa học THPTQG 0-5.0+</h3>
                 <h4>Cấp độ: Cơ bản</h4>
                 <p>Khóa học cơ bản giúp bạn làm quen với tiếng Anh và xây dựng nền tảng vững chắc.</p>
-                <button class="btn view-course-details" data-course-id="TiengAnhGiaoTiep">Xem chi tiết</button>
-                <!-- Thay 'a1' bằng ID khóa học thực tế -->
+                {% if user.is_authenticated %}
+                <button id="buy_thptqg1" class="btn view-course-details" data-course-id="TiengAnhGiaoTiep">Mua khóa học</button>
+                <script>
+                    const button_mua_thptqg1 = document.getElementById("buy_thptqg1")
+                    const course_thptqg1 = document.getElementById("course_thptqg1").textContent
+                    button_mua_thptqg1.addEventListener('click',() => {
+                        alert(`${course_thptqg1} đã thêm vào phần thanh toán`)
+                    })
+                </script>
+                {% else %}
+                <a href="{%url 'login' %}">
+                    <button class="btn view-course-details" data-course-id="TiengAnhGiaoTiep">Đăng nhập</button>
+                </a>
+                {% endif %}
             </div>
 
             <div class="giao_vien-item" id="giao_vien-a1"> <!-- Thêm ID cho khóa học -->
@@ -186,8 +198,20 @@
                 <h3>Khóa học THPTQG 6.0-8.0+</h3>
                 <h4>Cấp độ: Trung bình</h4>
                 <p>Khóa học cơ bản giúp bạn làm quen với tiếng Anh và xây dựng nền tảng vững chắc.</p>
-                <button class="btn view-course-details" data-course-id="TiengAnhGiaoTiep">Xem chi tiết</button>
-                <!-- Thay 'a1' bằng ID khóa học thực tế -->
+                {% if user.is_authenticated %}
+                <button id="buy_thptqg2" class="btn view-course-details" data-course-id="TiengAnhGiaoTiep">Mua khóa học</button>
+                <script>
+                    const button_mua_thptqg2 = document.getElementById("buy_thptqg2")
+                    const course_thptqg2 = document.getElementById("course_thptqg2").textContent
+                    button_mua_thptqg2.addEventListener('click',() => {
+                        alert(`${course_thptqg2} đã thêm vào phần thanh toán`)
+                    })
+                </script>
+                {% else %}
+                <a href="{%url 'login' %}">
+                    <button class="btn view-course-details" data-course-id="TiengAnhGiaoTiep">Đăng nhập</button>
+                </a>
+                {% endif %}
             </div>
 
             <div class="giao_vien-item" id="giao_vien-a1"> <!-- Thêm ID cho khóa học -->
@@ -195,8 +219,20 @@
                 <h3>Khóa học THPTQG 9.0+</h3>
                 <h4>Cấp độ: Nâng cao</h4>
                 <p>Khóa học cơ bản giúp bạn làm quen với tiếng Anh và xây dựng nền tảng vững chắc.</p>
-                <button class="btn view-course-details" data-course-id="TiengAnhGiaoTiep">Xem chi tiết</button>
-                <!-- Thay 'a1' bằng ID khóa học thực tế -->
+                {% if user.is_authenticated %}
+                <button id="buy_thptqg3" class="btn view-course-details" data-course-id="TiengAnhGiaoTiep">Mua khóa học</button>
+                <script>
+                    const button_mua_thptqg3 = document.getElementById("buy_thptqg3")
+                    const course_thptqg3 = document.getElementById("course_thptqg3").textContent
+                    button_mua_thptqg3.addEventListener('click',() => {
+                        alert(`${course_thptqg3} đã thêm vào phần thanh toán`)
+                    })
+                </script>
+                {% else %}
+                <a href="{%url 'login' %}">
+                    <button class="btn view-course-details" data-course-id="TiengAnhGiaoTiep">Đăng nhập</button>
+                </a>
+                {% endif %}
             </div>
 
             <div class="giao_vien-item" id="giao_vien-a1"> <!-- Thêm ID cho khóa học -->
@@ -204,8 +240,20 @@
                 <h3>Khóa học THPTQG cấp tốc</h3>
                 <h4>Cấp độ: Cơ bản - Nâng cao</h4>
                 <p>Khóa học cơ bản giúp bạn làm quen với tiếng Anh và xây dựng nền tảng vững chắc.</p>
-                <button class="btn view-course-details" data-course-id="TiengAnhGiaoTiep">Xem chi tiết</button>
-                <!-- Thay 'a1' bằng ID khóa học thực tế -->
+                {% if user.is_authenticated %}
+                <button id="buy_thptqg4" class="btn view-course-details" data-course-id="TiengAnhGiaoTiep">Mua khóa học</button>
+                <script>
+                    const button_mua_thptqg4 = document.getElementById("buy_thptqg4")
+                    const course_thptqg4 = document.getElementById("course_thptqg4").textContent
+                    button_mua_thptqg4.addEventListener('click',() => {
+                        alert(`${course_thptqg4} đã thêm vào phần thanh toán`)
+                    })
+                </script>
+                {% else %}
+                <a href="{%url 'login' %}">
+                    <button class="btn view-course-details" data-course-id="TiengAnhGiaoTiep">Đăng nhập</button>
+                </a>
+                {% endif %}
             </div>
             <!-- Thêm các lời chứng thực khác vào đây -->
         </div>

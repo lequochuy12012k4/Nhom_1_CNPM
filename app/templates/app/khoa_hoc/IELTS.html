@@ -185,8 +185,20 @@
                 <h3>Khóa học IELTS 0.0-4.0</h3>
                 <h4>Cấp độ: Cơ bản</h4>
                 <p>Nâng cao khả năng giao tiếp tiếng Anh trong các tình huống hàng ngày.</p>
-                <button class="btn view-course-details" data-course-id="TiengAnhGiaoTiep">Xem chi tiết</button>
-                <!-- Thay 'b1' bằng ID khóa học thực tế -->
+                {% if user.is_authenticated %}
+                <button id="buy_ielts1" class="btn view-course-details" data-course-id="TiengAnhGiaoTiep">Mua khóa học</button>
+                <script>
+                    const button_mua_ielts1 = document.getElementById("buy_ielts1")
+                    const course_ielts1 = document.getElementById("course_ielts1").textContent
+                    button_mua_ielts1.addEventListener('click',() => {
+                        alert(`${course_ielts1} đã thêm vào phần thanh toán`)
+                    })
+                </script>
+                {% else %}
+                <a href="{%url 'login' %}">
+                    <button class="btn view-course-details" data-course-id="TiengAnhGiaoTiep">Đăng nhập</button>
+                </a>
+                {% endif %}
             </div>
 
             <div class="course-item" id="course-b1"> <!-- Thêm ID cho khóa học -->
@@ -194,8 +206,20 @@
                 <h3>Khóa học IELTS 5.0-7.5</h3>
                 <h4>Cấp độ: Trung bình</h4>
                 <p>Nâng cao khả năng giao tiếp tiếng Anh trong các tình huống hàng ngày.</p>
-                <button class="btn view-course-details" data-course-id="TiengAnhGiaoTiep">Xem chi tiết</button>
-                <!-- Thay 'b1' bằng ID khóa học thực tế -->
+                {% if user.is_authenticated %}
+                <button id="buy_ielts2" class="btn view-course-details" data-course-id="TiengAnhGiaoTiep">Mua khóa học</button>
+                <script>
+                    const button_mua_ielts2 = document.getElementById("buy_ielts2")
+                    const course_ielts2 = document.getElementById("course_ielts2").textContent
+                    button_mua_ielts2.addEventListener('click',() => {
+                        alert(`${course_ielts2} đã thêm vào phần thanh toán`)
+                    })
+                </script>
+                {% else %}
+                <a href="{%url 'login' %}">
+                    <button class="btn view-course-details" data-course-id="TiengAnhGiaoTiep">Đăng nhập</button>
+                </a>
+                {% endif %}
             </div>
 
             <div class="course-item" id="course-tienganhgiaotiep_nangcao">
@@ -203,7 +227,20 @@
                 <h3>Khóa học IELTS 7.5+</h3>
                 <h4>Cấp độ: Nâng cao</h4>
                 <p>Khóa học tiếng Anh giao tiếp nâng cao, giao tiếp chuyên nghiệp</p>
-                <button class="btn view-course-details" data-course-id="TiengAnhGiaoTiep">Xem chi tiết</button>
+                {% if user.is_authenticated %}
+                <button id="buy_ielts3" class="btn view-course-details" data-course-id="TiengAnhGiaoTiep">Mua khóa học</button>
+                <script>
+                    const button_mua_ielts3 = document.getElementById("buy_ielts3")
+                    const course_ielts3 = document.getElementById("course_ielts3").textContent
+                    button_mua_ielts3.addEventListener('click',() => {
+                        alert(`${course_ielts3} đã thêm vào phần thanh toán`)
+                    })
+                </script>
+                {% else %}
+                <a href="{%url 'login' %}">
+                    <button class="btn view-course-details" data-course-id="TiengAnhGiaoTiep">Đăng nhập</button>
+                </a>
+                {% endif %}
             </div>
 
             <div class="course-item" id="course-b1"> <!-- Thêm ID cho khóa học -->
@@ -211,8 +248,20 @@
                 <h3>Khóa học IELTS Speaking - Writing</h3>
                 <h4>Cấp độ: Cơ bản - Nâng cao</h4>
                 <p>Nâng cao khả năng giao tiếp tiếng Anh trong các tình huống hàng ngày.</p>
-                <button class="btn view-course-details" data-course-id="toeic-b1">Xem chi tiết</button>
-                <!-- Thay 'b1' bằng ID khóa học thực tế -->
+                {% if user.is_authenticated %}
+                <button id="buy_ielts4" class="btn view-course-details" data-course-id="TiengAnhGiaoTiep">Mua khóa học</button>
+                <script>
+                    const button_mua_ielts4 = document.getElementById("buy_ielts4")
+                    const course_ielts4 = document.getElementById("course_ielts4").textContent
+                    button_mua_ielts4.addEventListener('click',() => {
+                        alert(`${course_ielts4} đã thêm vào phần thanh toán`)
+                    })
+                </script>
+                {% else %}
+                <a href="{%url 'login' %}">
+                    <button class="btn view-course-details" data-course-id="TiengAnhGiaoTiep">Đăng nhập</button>
+                </a>
+                {% endif %}
             </div>
 
             <!-- Thêm các khóa học khác vào đây -->

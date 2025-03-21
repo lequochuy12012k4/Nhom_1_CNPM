@@ -2,6 +2,7 @@
 {% load static %}
 {% block title %}Thanh toán - {% endblock title %}
 {% block content %}
+
 <body>
     <section class="hero">
         <div class="hero-content">
@@ -11,27 +12,29 @@
             <a href="" class="btn">Khám phá ngay</a>
         </div>
         <div class="hero-image">
-            <img src="z.jpg" alt="Người học tiếng Anh">
+            <img src="{% static 'img/hero-image.jpg' %}" alt="Người học tiếng Anh">
         </div>
     </section>
 
     <!-- Courses Section -->
     <section id="courses" class="courses">
-        <h2>Khóa học</h2>
+        <h2>Khóa học cần thanh toán</h2>
         <div class="course-list">
             <!-- Các khóa học sẽ được thêm vào đây (ví dụ) -->
             <div class="course-item" id="course-a1"> <!-- Thêm ID cho khóa học -->
-                <img src="img/course1.jpg" alt="Khóa học A1">
-                <h3>Khóa học A1 - Dành cho người mới bắt đầu</h3>
+                <img src="{% static 'app/images/photo/Toeic/toeic1.png' %}" alt="Khóa học B1">
+                <h3 id="course_title1">Khóa học Toeic 0-300+</h3>
                 <p>Khóa học cơ bản giúp bạn làm quen với tiếng Anh và xây dựng nền tảng vững chắc.</p>
+                <p>Giá: <strong>500,000 VNĐ</strong></p> <!-- Thêm giá khóa học -->
                 <button class="btn view-course-details" data-course-id="a1">Xem chi tiết</button>
                 <!-- Thay 'a1' bằng ID khóa học thực tế -->
             </div>
 
             <div class="course-item" id="course-b1"> <!-- Thêm ID cho khóa học -->
-                <img src="img/course2.jpg" alt="Khóa học B1">
-                <h3>Khóa học B1 - Tiếng Anh giao tiếp</h3>
+                <img src="{% static 'app/images/photo/Toeic/toeic1.png' %}" alt="Khóa học B1">
+                <h3 id="course_title1">Khóa học Toeic 450-600+</h3>
                 <p>Nâng cao khả năng giao tiếp tiếng Anh trong các tình huống hàng ngày.</p>
+                <p>Giá: <strong>800,000 VNĐ</strong></p> <!-- Thêm giá khóa học -->
                 <button class="btn view-course-details" data-course-id="b1">Xem chi tiết</button>
                 <!-- Thay 'b1' bằng ID khóa học thực tế -->
             </div>
@@ -40,58 +43,286 @@
         </div>
     </section>
 
-    <section id="courses" class="courses">
-        <h2>Đội ngũ giáo viên</h2>
-        <div class="giao_vien-list">
-            <!-- Các khóa học sẽ được thêm vào đây (ví dụ) -->
-            <div class="giao_vien-item" id="giao_vien-a1"> <!-- Thêm ID cho khóa học -->
-                <img src="img/course1.jpg" alt="Khóa học A1">
-                <h3>Khóa học A1 - Dành cho người mới bắt đầu</h3>
-                <p>Khóa học cơ bản giúp bạn làm quen với tiếng Anh và xây dựng nền tảng vững chắc.</p>
-                <!-- Thay 'a1' bằng ID khóa học thực tế -->
+    <!-- Payment Section -->
+    <section id="payment" class="payment">
+        <h2>Chi tiết thanh toán</h2>
+        <div class="payment-container">
+            <div class="invoice">
+                <h3>Hóa đơn</h3>
+                <div class="invoice-table-container">
+                    <table class="invoice-table">
+                        <thead>
+                            <tr>
+                                <th>Khóa học</th>
+                                <th>Giá</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Khóa học Toeic 0-300+</td>
+                                <td>500,000 VNĐ</td>
+                            </tr>
+                            <tr>
+                                <td>Khóa học Toeic 450-600+</td>
+                                <td>800,000 VNĐ</td>
+                            </tr>
+                            <!-- Thêm các khóa học đã chọn vào đây -->
+                        </tbody>
+                    </table>
+                </div>
+                <div class="total">
+                    <strong>Tổng cộng: 1,300,000 VNĐ</strong>
+                </div>
             </div>
 
-            <div class="course-item" id="course-b1"> <!-- Thêm ID cho khóa học -->
-                <img src="img/course2.jpg" alt="Khóa học B1">
-                <h3>Khóa học B1 - Tiếng Anh giao tiếp</h3>
-                <p>Nâng cao khả năng giao tiếp tiếng Anh trong các tình huống hàng ngày.</p>
-                <!-- Thay 'b1' bằng ID khóa học thực tế -->
-            </div>
+            <div class="payment-method">
+                <h3>Thanh toán qua VietQR</h3>
+                <p>Vui lòng nhập thông tin để tạo mã QR thanh toán:</p>
 
-            <!-- Thêm các khóa học khác vào đây -->
+                <form id="payment-form">
+
+                    <div>
+                        <label for="accountName">Tên tài khoản:</label> <!-- Added Username Section -->
+                        <input type="text" id="accountName" name="accountName" placeholder="Nhập tên của bạn" required>
+                    </div>
+
+                    <div>
+                        <label for="bank">Chọn ngân hàng:</label>
+                        <select id="bank" name="bank" required> <!-- Added required attribute -->
+                            <option value="">-- Chọn ngân hàng --</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="accountNumber">Số tài khoản:</label>
+                        <input type="text" id="accountNumber" name="accountNumber" required>
+                    </div>
+
+                    <!-- Removed Account Name Section -->
+
+                    <div>
+                        <label for="amount">Số tiền:</label>
+                        <input type="number" id="amount" name="amount" value="1300000" readonly required>
+                    </div>
+
+                    <div>
+                        <label for="description">Nội dung chuyển khoản:</label>
+                        <input type="text" id="description" name="description"
+                            placeholder="Ví dụ: Thanh toán khóa học A1" required>
+                    </div>
+
+                    <button type="button" id="generateQR">Tạo mã QR</button>
+                </form>
+
+                <div id="qr-code-container" style="display:none;">
+                    <p>Quét mã QR dưới đây để thanh toán:</p>
+                    <div class="qr-code">
+                        <img id="qr-code-image" src="" alt="VietQR Code">
+                    </div>
+                    <div class="bank-details">
+                        <p><b>Tên tài khoản:</b> <span id="account-name-display"></span></p>
+                        <p><b>Ngân hàng:</b> <span id="bank-name-display"></span></p>
+                        <p><b>Số tài khoản:</b> <span id="account-number-display"></span></p>
+                        <p><b>Nội dung chuyển khoản:</b> <span id="description-display"></span></p>
+                        <p class="important-note"><i>Vui lòng nhập chính xác số tiền và nội dung chuyển khoản.</i></p>
+                    </div>
+                </div>
+
+            </div>
         </div>
     </section>
 
-    <!-- Testimonials Section -->
-    <section id="testimonials" class="testimonials">
-        <h2>Cảm nhận học viên</h2>
-        <div class="testimonial-list">
-            <div class="testimonial-item">
-                <p>"Tôi đã cải thiện đáng kể khả năng tiếng Anh của mình nhờ các khóa học tại đây. Giáo viên rất nhiệt
-                    tình và bài giảng rất thú vị."</p>
-                <p>- Nguyễn Văn A</p>
-            </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
 
-            <div class="testimonial-item">
-                <p>"Giao diện thân thiện, dễ sử dụng. Các bài tập tương tác giúp tôi học tiếng Anh hiệu quả hơn."</p>
-                <p>- Trần Thị B</p>
-            </div>
+            // **Lấy danh sách ngân hàng từ API VietQR**
+            $.ajax({
+                url: "https://api.vietqr.io/v2/banks",
+                type: "GET",
+                success: function (data) {
+                    var banks = data.data;
+                    for (var i = 0; i < banks.length; i++) {
+                        $("#bank").append('<option value="' + banks[i].code + '">' + banks[i].name + '</option>');
+                    }
+                },
+                error: function (error) {
+                    console.error("Lỗi khi lấy danh sách ngân hàng:", error);
+                    alert("Không thể tải danh sách ngân hàng. Vui lòng thử lại sau.");
+                }
+            });
 
-            <!-- Thêm các lời chứng thực khác vào đây -->
-        </div>
-    </section>
+            // **Tạo mã QR**
+            $("#generateQR").click(function () {
+                var bankCode = $("#bank").val();
+                var accountNumber = $("#accountNumber").val();
+                var accountName = $("#accountName").val(); // Get username
+                var amount = $("#amount").val();
+                var description = $("#description").val();
 
-    <!-- Contact Section -->
-   
-    <!-- Course Details Modal -->
-    <div id="courseDetailsModal" class="modal">
-        <div class="modal-content">
-            <h2 id="courseDetailsTitle"></h2>
-            <div id="courseDetailsContent">
-                <!-- Nội dung chi tiết khóa học sẽ được thêm vào đây -->
-            </div>
-        </div>
-    </div>
-    <script src="{% static 'app\js\home.js' %}"></script>
-</body>
-{% endblock content %}
+                if (!bankCode || !accountNumber || !amount || !description || !accountName) {  // Added check for username
+                    alert("Vui lòng điền đầy đủ thông tin.");
+                    return;
+                }
+
+                // Encode the description to be URL-safe
+                // Add username to the description
+                var encodedDescription = encodeURIComponent(accountName + " - " + description);
+
+
+                // Construct the VietQR image URL
+                var qrCodeUrl = "https://img.vietqr.io/image/" + bankCode + "-" + accountNumber + "-compact.png?amount=" + amount + "&addInfo=" + encodedDescription;
+
+                $("#qr-code-image").attr("src", qrCodeUrl);
+                $("#bank-name-display").text($("#bank option:selected").text()); // Hiển thị tên ngân hàng
+                $("#account-name-display").text(accountName);
+                $("#account-number-display").text(accountNumber);
+                $("#description-display").text(description);
+                $("#qr-code-container").show();
+            });
+
+        });
+    </script>
+    <style>
+        /* Payment Section */
+        .payment-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: space-between;
+            /* Hoặc space-around, flex-start tùy theo ý thích */
+        }
+
+        .invoice,
+        .payment-method {
+            flex: 1 1 300px;
+            /* Chiếm ít nhất 300px, có thể lớn hơn nếu có chỗ */
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .invoice h3,
+        .payment-method h3 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .invoice-table-container {
+            overflow-x: auto;
+            /* Thêm thanh cuộn ngang nếu bảng quá rộng */
+        }
+
+        .invoice-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 15px;
+        }
+
+        .invoice-table th,
+        .invoice-table td {
+            padding: 8px 12px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        .invoice-table th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+
+        .total {
+            margin-top: 15px;
+            font-size: 1.1em;
+            text-align: right;
+        }
+
+        .qr-code {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .qr-code img {
+            max-width: 250px;
+            /* Tăng kích thước tối đa */
+            max-height: 250px;
+            /* Tăng kích thước tối đa (nếu cần) */
+            border: 1px solid #eee;
+            padding: 5px;
+            border-radius: 5px;
+            background-color: white;
+        }
+
+        .bank-details p {
+            margin-bottom: 5px;
+            line-height: 1.4;
+        }
+
+        .important-note {
+            font-style: italic;
+            color: #888;
+            margin-top: 10px;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .payment-container {
+                flex-direction: column;
+                /* Stack on smaller screens */
+            }
+
+            .invoice,
+            .payment-method {
+                width: 100%;
+                /* Full width on smaller screens */
+            }
+        }
+
+        /* Payment Form */
+        #payment-form div {
+            margin-bottom: 10px;
+        }
+
+        #payment-form label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        #payment-form input[type="text"],
+        #payment-form input[type="number"],
+        #payment-form select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            /* Important: Include padding and border in the element's total width and height */
+        }
+
+        #payment-form input[readonly] {
+            background-color: #f0f0f0;
+            cursor: not-allowed;
+        }
+
+        #payment-form button {
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        #payment-form button:hover {
+            background-color: #3e8e41;
+        }
+
+        #qr-code-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+    </style>
+    {% endblock content %}
